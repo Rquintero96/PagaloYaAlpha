@@ -11,6 +11,9 @@ import { Tabs } from '../pages/tabs/tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+// Plugin nativo de codigos de barra
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +39,8 @@ import { StatusBar } from '@ionic-native/status-bar';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner
   ]
 })
 export class AppModule {}
