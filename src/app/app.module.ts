@@ -13,10 +13,10 @@ import { Tabs } from '../pages/tabs/tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-<<<<<<< HEAD
+
 // Plugin nativo de codigos de barra
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
-=======
+
 export const firebaseConfig = {
     apiKey: "AIzaSyDFB1YfNGQZ77J7ZR4nnnfDhKk8kSyi8g8",
     authDomain: "pagaloya0.firebaseapp.com",
@@ -25,7 +25,7 @@ export const firebaseConfig = {
     storageBucket: "pagaloya0.appspot.com",
     messagingSenderId: "808320915241"
   };
->>>>>>> aba2149caff77de8ed32634d8cdbb54cfb93330a
+
 
 @NgModule({
   declarations: [
