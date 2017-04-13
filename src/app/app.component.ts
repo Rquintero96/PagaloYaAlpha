@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Tabs } from '../pages/tabs/tabs';
+import { Perfil } from '../pages/perfil/perfil';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +26,7 @@ export class MyApp {
     });
 
      this.pages = [
-      { title: 'Tabs Page', component: Tabs  },
+      { title: 'Perfil', component: Perfil  }
       // Aqui van las otras paginas
     ];
 

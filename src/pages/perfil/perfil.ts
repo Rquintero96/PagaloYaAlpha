@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
 import * as QR from '../assets/scripts/qrcode';
+import { Tabs } from '../tabs/tabs';
 
 
 
@@ -20,8 +21,13 @@ export class Perfil {
   user: FirebaseObjectObservable<any>;
 
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public database: AngularFireDatabase) {
-     this.user = this.database.object('/User/1');
+     this.user = this.database.object('/User/-KhUY7ugwy_VJqJXIDay');
   }
+
+  goBack() {
+    this.navCtrl.push(Tabs);
+  }
+
   editInfo(user){
     console.log('Este es user: ' + user);
     let updateUserModal = this.alertController.create({

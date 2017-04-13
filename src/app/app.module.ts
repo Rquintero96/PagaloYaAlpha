@@ -11,6 +11,7 @@ import { Transacciones } from '../pages/transacciones/transacciones';
 import { Tabs } from '../pages/tabs/tabs';
 import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
 import { Perfil } from '../pages/perfil/perfil';
+
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -40,7 +41,14 @@ export const firebaseConfig = {
     Perfil
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'Atrás',
+      iconMode: 'ios',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out',
+      tabsPlacement: 'bottom',
+      pageTransition: 'ios-transition'
+    }),
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
