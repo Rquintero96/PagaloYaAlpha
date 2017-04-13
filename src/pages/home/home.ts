@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
+import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 
 // Plugin nativo de codigos de barra
 import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
