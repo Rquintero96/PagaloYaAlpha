@@ -24320,3 +24320,7 @@ page-contactos h2 {
 page-contactos .custom-icon-contact {
   color: #5586BA;
 }
+
+page-perfil h3 {
+  color: blue;
+}
