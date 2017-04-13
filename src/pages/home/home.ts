@@ -55,11 +55,14 @@ export class HomePage {
 
   private irApago(resultado)
   {
-    let qr =  JSON.parse(resultado.text);
-    console.log(qr.nombre);
+    let user_id : String = resultado.text;
+    let usuario;
+    /*
+    Aqui va el fetch a fire base con el id del usuario
+    */
     
     this.navCtrl.push(PagarFase1, {
-      textoEscaneado: resultado.text
+      usuario: usuario
     });
   }
 

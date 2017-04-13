@@ -12,9 +12,10 @@ import { Transacciones } from '../transacciones/transacciones';
 export class Tabs {
   // this tells the tabs component which Pages
   // should be each tab's root Page
+  
+  tab3Root: any = Bancos;
   tab1Root: any = HomePage;
   tab2Root: any = Transacciones;
-  tab3Root: any = Bancos;
   tab4Root: any = Contactos;
 
   constructor() {
