@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
+import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
 
 // Plugin nativo de codigos de barra
@@ -69,6 +70,10 @@ export class HomePage {
 
   private irPerfil(){
     this.navCtrl.push(Perfil);
+  }
+
+  private irPagarFase2(){
+    this.navCtrl.push(PagarFase2);
   }
 
 }

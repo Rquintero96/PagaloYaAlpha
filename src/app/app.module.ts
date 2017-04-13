@@ -10,6 +10,7 @@ import { Contactos } from '../pages/contactos/contactos';
 import { Transacciones } from '../pages/transacciones/transacciones';
 import { Tabs } from '../pages/tabs/tabs';
 import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
+import { PagarFase2 } from '../pages/pagar-fase2/pagar-fase2';
 import { Perfil } from '../pages/perfil/perfil';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,6 +39,7 @@ export const firebaseConfig = {
     Transacciones,
     Tabs,
     PagarFase1,
+    PagarFase2,
     Perfil
   ],
   imports: [
@@ -61,6 +63,7 @@ export const firebaseConfig = {
     Transacciones,
     Tabs,
     PagarFase1,
+    PagarFase2,
     Perfil
   ],
   providers: [
