@@ -27,15 +27,18 @@
 </script>
 
 <ion-content padding>
-    <div align="center">
-        <div class="imgRedonda" align="center">
-            <div class="item-avatar">
-                <img src="../assets/images/IMG_4076.jpg" class='imgRedonda' />
+    <div>
+        <div align="center">
+            <div class="imgRedonda" align="center">
+                <div class="item-avatar">
+                    <img src="../assets/images/IMG_4076.jpg" class='imgRedonda' />
+                </div>
             </div>
         </div>
         <h3>{{(user | async)?.Nombre}} {{(user | async)?.Apellido}}</h3>
         <h5>Banco {{(user | async)?.Banco}}</h5>
-        <h5>Cuenta n°: {{(user | async)?.Cuenta}}</h5>
+        <h5>Cuenta principal n°: {{(user | async)?.Cuentas.Cuenta1}}</h5>
+        <h5>Cuenta secundaria n°: {{(user | async)?.Cuentas.Cuenta2}}</h5>
         <h5>Correo: {{(user | async)?.Correo}}</h5>
         <button ion-button color="default" onclick="QRGenerator(1)">Muestra tu QR</button>
         <div id="qrcode"></div>

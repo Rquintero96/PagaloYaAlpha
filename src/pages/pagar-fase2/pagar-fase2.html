@@ -6,9 +6,47 @@
 
 </ion-header>
 
+<ion-content padding>
 
-<ion-content padding class="background">
-    <div>
+    <ion-list>
 
+        <br><br><br>
+        <ion-item>
+            Beneficiario: {{(user | async)?.Nombre}} {{(user | async)?.Apellido}}
+        </ion-item>
+
+        <ion-item>
+            Banco: {{(user | async)?.Banco}}
+        </ion-item>
+
+        <ion-item>
+            Cuenta Destino: {{(user | async)?.Cuentas.Cuenta2}}
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="placeholder">Cuenta Origen</ion-label>
+            <ion-select [(ngModel)]="cuenta">
+                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta1}}">{{(user2 | async)?.Cuentas.Cuenta1}}</ion-option>
+                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta2}}">{{(user2 | async)?.Cuentas.Cuenta2}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" placeholder="Monto"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="text" placeholder="Clave Secreta"></ion-input>
+        </ion-item>
+        <br>
+    </ion-list>
+
+    <div align="center">
+        <button ion-button icon-left outline (click)="pagar()">
+  <ion-icon name="flash"></ion-icon>
+  Pagar
+</button>
     </div>
+
+
 </ion-content>

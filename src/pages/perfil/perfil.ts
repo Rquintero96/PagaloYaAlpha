@@ -1,17 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
-import * as QR from '../assets/scripts/qrcode';
+// import * as QR from '../assets/scripts/qrcode';
 import { Tabs } from '../tabs/tabs';
 
 
-
-/**
- * Generated class for the Perfil page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @Component({
   selector: 'page-perfil',
   templateUrl: 'perfil.html',

@@ -2,12 +2,10 @@ page-perfil {
     h3 {
         color: blue;
     }
-    img {
-        transform: rotate(180deg);
-    }
     .imgRedonda {
         width: 180px;
         height: 180px;
         border-radius: 150px;
+        transform: rotate(90deg);
     }
 }
