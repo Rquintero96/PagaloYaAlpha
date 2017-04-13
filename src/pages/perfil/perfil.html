@@ -8,8 +8,8 @@
     Atrás
   </button>
         </ion-buttons>
-        <ion-buttons end>
-            <button ion-button (click)="editInfo(user)" clear>
+        <ion-buttons *ngFor="let u of user | async" end>
+            <button ion-button (click)="editInfo(u)" clear>
               <ion-icon name="create"></ion-icon>
             </button>
         </ion-buttons>
@@ -35,12 +35,15 @@
                 </div>
             </div>
         </div>
-        <h3>{{(user | async)?.Nombre}} {{(user | async)?.Apellido}}</h3>
-        <h5>Banco {{(user | async)?.Banco}}</h5>
-        <h5>Cuenta principal n°: {{(user | async)?.Cuentas.Cuenta1}}</h5>
-        <h5>Cuenta secundaria n°: {{(user | async)?.Cuentas.Cuenta2}}</h5>
-        <h5>Correo: {{(user | async)?.Correo}}</h5>
-        <button ion-button color="default" onclick="QRGenerator(1)">Muestra tu QR</button>
-        <div id="qrcode"></div>
+        <div *ngFor="let u of user | async">
+          <h3>{{u.Nombre}} {{u.Apellido}}</h3>
+          <h5>Telefono {{u.Telefono}} </h5>
+          <h5>Banco {{u.Banco}}</h5>
+          <h5>Cuenta principal n°: {{u.Cuentas.Cuenta1}}</h5>
+          <h5>Cuenta secundaria n°: {{u.Cuentas.Cuenta2}}</h5>
+          <h5>Correo: {{u.Correo}}</h5>
+          <button ion-button color="default" onclick="QRGenerator(u.$key)">Muestra tu QR</button>
+          <div id="qrcode"></div>
+        </div>
     </div>
 </ion-content>

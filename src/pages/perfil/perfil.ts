@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 // import * as QR from '../assets/scripts/qrcode';
 import { Tabs } from '../tabs/tabs';
 
@@ -11,11 +11,16 @@ import { Tabs } from '../tabs/tabs';
 })
 export class Perfil {
 
-  user: FirebaseObjectObservable<any>;
+  user: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public database: AngularFireDatabase) {
       
-       this.user = this.database.object('/User/-KhUY7ugwy_VJqJXIDay');// Lo de rey 
+       this.user = this.user = this.database.list('/User', {
+        query:{
+          orderByKey: true,
+          equalTo: '-KhUxoaDXsMYe0x1-Ggf'
+        }
+      });// Lo de rey 
       
       //Lo que puede solucionarlo si almacenamos el id adentro de cada usuario
       /*const userQuery$ = this.database.list('/User', {
@@ -33,8 +38,8 @@ export class Perfil {
     this.navCtrl.push(Tabs);
   }
 
-  editInfo(user){
-    console.log('Este es user: ' + user);
+  editInfo(u){
+    console.log('Este es user: ' + u);
     let updateUserModal = this.alertController.create({
         title: "Actualizar Información",
         message: "Edita tu información",
@@ -42,22 +47,32 @@ export class Perfil {
           {
             name: "Nombre",
             placeholder: "Nombre",
-            value: user.Nombre
+            value: u.Nombre
           },
           {
             name: "Apellido",
             placeholder: "Apellido",
-            value: user.Apellido
+            value: u.Apellido
           },
           {
             name: "Telefono",
             placeholder: "Telefono",
-            value: user.Telefono
+            value: u.Telefono
           },
           {
             name: "Correo",
             placeholder: "Correo",
-            value: user.Correo
+            value: u.Correo
+          },
+          {
+            name: "CuentaPrincipal",
+            placeholder:"Cuenta Principal",
+            value: u.Cuentas.Cuenta1
+          },
+          {
+            name: "CuentaSecundaria",
+            placeholder:"Cuenta Secundaria",
+            value: u.Cuentas.Cuenta2
           }
         ],
         buttons: [
@@ -70,11 +85,12 @@ export class Perfil {
           {
             text: "Guardar",
             handler: data => {
-              this.user.update( {
+              this.user.update( u.$key,{
                   Nombre: data.Nombre,
                   Telefono: data.Telefono,
                   Apellido: data.Apellido,
-                  Correo: data.Correo
+                  Correo: data.Correo,
+                  Cuentas:{Cuenta1:data.CuentaPrincipal, Cuenta2: data.CuentaSecundaria }
               });
             }
           }
