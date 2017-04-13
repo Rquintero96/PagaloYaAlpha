@@ -57,15 +57,20 @@ export class HomePage {
 
   private irApago(resultado)
   {
-    let user_id : String = resultado.text;
-    let usuario;
-    /*
-    Aqui va el fetch a fire base con el id del usuario
-    */
+    if (resultado)
+    {
+          let usuarioApagar_id : String = resultado.text; // Buscar con este id
+          let usuarioApagar; // <----- Guardar el Usuarios acá luego
+          /*
+          Aqui va el fetch a fire base con el id del usuario
+          */
     
-    this.navCtrl.push(PagarFase1, {
-      usuario: usuario
-    });
+          this.navCtrl.push(PagarFase1, {
+          usuarioApagar: usuarioApagar, 
+          qr: resultado
+          });
+    }
+
   }
 
   private irPerfil(){

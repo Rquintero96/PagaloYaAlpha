@@ -22,15 +22,13 @@
     
     <ion-card-content>
       <ion-card-title>
-        
+        <p> {{usuarioApagar.nombre}} </p>
       </ion-card-title>
-      <p>
-        {{resultado.text}}
-      </p>
-    </ion-card-content>
 
+    </ion-card-content>
+     <!-- Aquí van mas detalles del usuario escaneado-->
     <ion-row no-padding>
-      <button ion-button block>Pagar</button>
+      <button ion-button block (click)="irPagarFase2()">Pagar</button>
     </ion-row>
 
   </ion-card>

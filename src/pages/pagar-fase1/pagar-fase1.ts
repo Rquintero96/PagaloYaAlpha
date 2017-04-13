@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PagarFase2 } from "../pagar-fase2/pagar-fase2";
+
 
 /**
  * Generated class for the PagarFase1 page.
@@ -14,7 +16,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PagarFase1 {
 
+  // Atributos
+  public usuarioApagar: any ;
+
+  // Constructor
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.usuarioApagar = navParams.get('usuarioApagar'); //Inicializa el usuario escaneado con la data pasada del home.ts
+  }
+
+  // Metodos
+  
+  private irPagarFase2()
+  {
+    this.guardarEnContactos();
+    this.navCtrl.push(PagarFase2, { usuarioApagar: this.usuarioApagar });
+  } 
+
+  private guardarEnContactos()
+  {
+    // Aqui guarda usuarioApagar como un contacto nuevo (Usar codigo de rocco)
   }
 
   ionViewDidLoad() {
