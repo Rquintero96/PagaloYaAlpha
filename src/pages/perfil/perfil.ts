@@ -18,16 +18,22 @@ import { Tabs } from '../tabs/tabs';
 })
 export class Perfil {
 
-  user: FirebaseObjectObservable<any[]>;
+  user: FirebaseObjectObservable<any>;
 
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public database: AngularFireDatabase) {
-     this.user = this.database.list('/User', {
-    query: {
-    orderByChild: 'User',
-    equalTo: '-KhUY7ugwy_VJqJXIDay',
-    orderByKey: true,
-  }
-});
+      
+       this.user = this.database.object('/User/-KhUY7ugwy_VJqJXIDay');// Lo de rey 
+      
+      //Lo que puede solucionarlo si almacenamos el id adentro de cada usuario
+      /*const userQuery$ = this.database.list('/User', {
+        query: {
+        orderByChild: 'User',
+        equalTo: '-KhUY7ugwy_VJqJXIDay',
+        orderByKey: true,
+      }
+    });
+    userQuery$.subscribe(User => console.log(User));*/ 
+    // por que git jode tanto valeeee
   }
 
   goBack() {
