@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
+import { Perfil } from '../perfil/perfil';
 
 // Plugin nativo de codigos de barra
 import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
@@ -64,6 +65,10 @@ export class HomePage {
     this.navCtrl.push(PagarFase1, {
       usuario: usuario
     });
+  }
+
+  private irPerfil(){
+    this.navCtrl.push(Perfil);
   }
 
 }
