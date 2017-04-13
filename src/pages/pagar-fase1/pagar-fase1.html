@@ -7,12 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>pagarFase1</ion-title>
+    <ion-title>Información</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="cards-bg">
+  <page-pagar-fase1><!-- Angular Selector-->
+    
+  <ion-card>
 
+    <!-- Aquí se podria poner avatar de la entidad-->
+    
+    <ion-card-content>
+      <ion-card-title>
+        
+      </ion-card-title>
+      <p>
+        {{resultado.text}}
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <button ion-button block>Pagar</button>
+    </ion-row>
+
+  </ion-card>
+  
+  </page-pagar-fase1><!-- Angular Selector-->
+  
 </ion-content>

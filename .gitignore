@@ -23,7 +23,7 @@ tmp/
 temp/
 hooks/
 platforms/
-www/
+plugins/
 $RECYCLE.BIN/
 
 .DS_Store

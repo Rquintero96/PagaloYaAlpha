@@ -9,6 +9,7 @@ import { Bancos } from '../pages/bancos/bancos';
 import { Contactos } from '../pages/contactos/contactos';
 import { Transacciones } from '../pages/transacciones/transacciones';
 import { Tabs } from '../pages/tabs/tabs';
+import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     Bancos,
     Contactos,
     Transacciones,
-    Tabs
+    Tabs,
+    PagarFase1
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -48,7 +50,8 @@ export const firebaseConfig = {
     Bancos,
     Contactos,
     Transacciones,
-    Tabs
+    Tabs,
+    PagarFase1
   ],
   providers: [
     StatusBar,

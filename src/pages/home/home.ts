@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
 
 // Plugin nativo de codigos de barra
 import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
@@ -13,7 +14,6 @@ export class HomePage {
   // Atributos
   public textoEscaneado: string;
   opciones: BarcodeScannerOptions;
-  resultado: {};
 
 //Constructor por defecto
   constructor( private barcode: BarcodeScanner, public navCtrl: NavController) {
@@ -30,7 +30,7 @@ export class HomePage {
     this.loading = false;
   }*/
 
-  public ScannearCodigo() 
+  public ScannearCodigo() // Boton de pagar
   {
 
   this.opciones = {
@@ -39,7 +39,7 @@ export class HomePage {
 
   this.barcode.scan()
   .then((resultado) => {
-      if (!resultado.cancelled) 
+      if (!resultado.cancelled)
       {
         this.irApago(resultado);
         // Quitar en Produccion:
@@ -53,11 +53,14 @@ export class HomePage {
     })
   }
 
-  private irApago(barcodeData) 
+  private irApago(resultado)
   {
-    /*NavController.push(pagarFase1, {
-      scannedText: resultado.text
-    });*/
+    let qr =  JSON.parse(resultado.text);
+    console.log(qr.nombre);
+    
+    this.navCtrl.push(PagarFase1, {
+      textoEscaneado: resultado.text
+    });
   }
 
 }
