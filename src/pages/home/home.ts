@@ -66,7 +66,7 @@ export class HomePage {
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
-          usuarioApagar = this.database.object(`/items/${usuarioApagar_id}`);
+          usuarioApagar = this.database.object('/User/'+usuarioApagar_id);
           
           this.navCtrl.push(PagarFase1, {
           usuarioApagar: usuarioApagar, 
