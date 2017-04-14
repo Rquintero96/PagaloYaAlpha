@@ -16,18 +16,18 @@
         </ion-item>
 
         <ion-item>
-            Banco: {{(user | async)?.Banco}}
+            Banco: {{(user | async)?.Cuentas.Cuenta2.Banco}}
         </ion-item>
 
         <ion-item>
-            Cuenta Destino: {{(user | async)?.Cuentas.Cuenta2}}
+            Cuenta Destino: {{(user | async)?.Cuentas.Cuenta2.Numero}}
         </ion-item>
 
         <ion-item>
             <ion-label color="placeholder">Cuenta Origen</ion-label>
             <ion-select [(ngModel)]="cuenta">
-                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta1}}">{{(user2 | async)?.Cuentas.Cuenta1}}</ion-option>
-                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta2}}">{{(user2 | async)?.Cuentas.Cuenta2}}</ion-option>
+                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta1}}">{{(user2 | async)?.Cuentas.Cuenta1.Numero}}</ion-option>
+                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta2}}">{{(user2 | async)?.Cuentas.Cuenta2.Numero}}</ion-option>
             </ion-select>
         </ion-item>
 

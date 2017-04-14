@@ -14,7 +14,7 @@ export class Contactos {
                 public alertController: AlertController, 
                   public database: AngularFireDatabase) {
       
-      this.user = this.database.list('/contacto');
+      this.user = this.database.list('/contacto', '/User');
   }
 
   createUser() {
@@ -31,12 +31,24 @@ export class Contactos {
             placeholder: "Apellido"
           },
           {
-            name: "Banco",
-            placeholder: "Banco"
+            name: "Telefono",
+            placeholder: "Telefono"
           },
           {
-            name: "Cuenta",
-            placeholder: "Cuenta Bancaria"
+            name: "BancoPrincipal",
+            placeholder:"Banco Principal"    
+          },
+          {
+            name: "CuentaPrincipal",
+            placeholder:"Cuenta Principal"
+          },
+          {
+            name: "BancoSecundario",
+            placeholder:"Banco Secundario"
+          },
+          {
+            name: "CuentaSecundaria",
+            placeholder:"Cuenta Secundaria"
           },
           {
             name: "Correo",
@@ -55,8 +67,9 @@ export class Contactos {
             handler: data => {
               this.user.push({
                   Nombre: data.Nombre,
-                  Banco: data.Banco,
-                  Cuenta: data.Cuenta,
+                  Telefono: data.Telefono,
+                  Cuentas:{Cuenta1: {Numero: data.CuentaPrincipal, Banco: data.BancoPrincipal}, 
+                           Cuenta2: {Numero:data.CuentaSecundaria, Banco: data.BancoSecundario}},
                   Apellido: data.Apellido,
                   Correo: data.Correo
               });
@@ -108,19 +121,34 @@ export class Contactos {
             value: u.Apellido
           },
           {
-            name: "Banco",
-            placeholder: "Banco",
-            value: u.Banco
-          },
-          {
-            name: "Cuenta",
-            placeholder: "Cuenta Bancaria",
-            value: u.Cuenta
+            name: "Telefono",
+            placeholder: "Telefono",
+            value: u.Telefono
           },
           {
             name: "Correo",
             placeholder: "Correo",
             value: u.Correo
+          },
+          {
+            name: "BancoPrincipal",
+            placeholder:"Banco Principal",
+            value: u.Cuentas.Cuenta1.Banco
+          },
+          {
+            name: "CuentaPrincipal",
+            placeholder:"Cuenta Principal",
+            value: u.Cuentas.Cuenta1.Numero
+          },
+          {
+            name: "BancoSecundario",
+            placeholder:"Banco Secundario",
+            value: u.Cuentas.Cuenta2.Banco
+          },
+          {
+            name: "CuentaSecundaria",
+            placeholder:"Cuenta Secundaria",
+            value: u.Cuentas.Cuenta2.Numero
           }
         ],
         buttons: [
@@ -135,10 +163,11 @@ export class Contactos {
             handler: data => {
               this.user.update( u.$key, {
                   Nombre: data.Nombre,
-                  Banco: data.Banco,
-                  Cuenta: data.Cuenta,
+                  Telefono: data.Telefono,
                   Apellido: data.Apellido,
-                  Correo: data.Correo
+                  Correo: data.Correo,
+                  Cuentas:{Cuenta1: {Numero: data.CuentaPrincipal, Banco: data.BancoPrincipal}, 
+                           Cuenta2: {Numero:data.CuentaSecundaria, Banco: data.BancoSecundario}},
               });
             }
           }

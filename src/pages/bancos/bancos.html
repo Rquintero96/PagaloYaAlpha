@@ -12,4 +12,19 @@
 
 <ion-content padding>
 
+    <div *ngFor="let u of user | async">
+        <ion-list>
+            <br>
+            <ion-item>
+                Cuenta 1 n°: {{u.Cuentas.Cuenta1.Numero}} <br> Banco: {{u.Cuentas.Cuenta1.Banco}}
+            </ion-item>
+
+            <ion-item>
+                Cuenta 2 n°: {{u.Cuentas.Cuenta2.Numero}} <br> Banco: {{u.Cuentas.Cuenta2.Banco}}
+            </ion-item>
+            <br>
+
+        </ion-list>
+    </div>
+
 </ion-content>

@@ -18,7 +18,7 @@ export class Perfil {
        this.user = this.user = this.database.list('/User', {
         query:{
           orderByKey: true,
-          equalTo: '-KhUxoaDXsMYe0x1-Ggf'
+          equalTo: '-KhUY7ugwy_VJqJXIDay'
         }
       });// Lo de rey 
       
@@ -39,7 +39,7 @@ export class Perfil {
   }
 
   editInfo(u){
-    console.log('Este es user: ' + u);
+    console.log('Este es user: ' + u.Nombre);
     let updateUserModal = this.alertController.create({
         title: "Actualizar Información",
         message: "Edita tu información",
@@ -65,14 +65,24 @@ export class Perfil {
             value: u.Correo
           },
           {
+            name: "BancoPrincipal",
+            placeholder:"Banco Principal",
+            value: u.Cuentas.Cuenta1.Banco
+          },
+          {
             name: "CuentaPrincipal",
             placeholder:"Cuenta Principal",
-            value: u.Cuentas.Cuenta1
+            value: u.Cuentas.Cuenta1.Numero
+          },
+          {
+            name: "BancoSecundario",
+            placeholder:"Banco Secundario",
+            value: u.Cuentas.Cuenta2.Banco
           },
           {
             name: "CuentaSecundaria",
             placeholder:"Cuenta Secundaria",
-            value: u.Cuentas.Cuenta2
+            value: u.Cuentas.Cuenta2.Numero
           }
         ],
         buttons: [
@@ -90,8 +100,9 @@ export class Perfil {
                   Telefono: data.Telefono,
                   Apellido: data.Apellido,
                   Correo: data.Correo,
-                  Cuentas:{Cuenta1:data.CuentaPrincipal, Cuenta2: data.CuentaSecundaria }
-              });
+                  Cuentas:{Cuenta1: {Numero: data.CuentaPrincipal, Banco: data.BancoPrincipal}, 
+                           Cuenta2: {Numero:data.CuentaSecundaria, Banco: data.BancoSecundario}},
+              }); 
             }
           }
         ]

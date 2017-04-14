@@ -35,15 +35,17 @@
                 </div>
             </div>
         </div>
+        <br>
         <div *ngFor="let u of user | async">
-          <h3>{{u.Nombre}} {{u.Apellido}}</h3>
-          <h5>Telefono {{u.Telefono}} </h5>
-          <h5>Banco {{u.Banco}}</h5>
-          <h5>Cuenta principal n°: {{u.Cuentas.Cuenta1}}</h5>
-          <h5>Cuenta secundaria n°: {{u.Cuentas.Cuenta2}}</h5>
-          <h5>Correo: {{u.Correo}}</h5>
-          <button ion-button color="default" onclick="QRGenerator(u.$key)">Muestra tu QR</button>
-          <div id="qrcode"></div>
+            <h3>{{u.Nombre}} {{u.Apellido}}</h3>
+            <h5>Telefono: {{u.Telefono}} </h5>
+            <h5>Cuenta principal n°: {{u.Cuentas.Cuenta1.Numero}}</h5>
+            <h5>Banco: {{u.Cuentas.Cuenta1.Banco}}</h5>
+            <h5>Cuenta secundaria n°: {{u.Cuentas.Cuenta2.Numero}}</h5>
+            <h5>Banco: {{u.Cuentas.Cuenta2.Banco}}</h5>
+            <h5>Correo: {{u.Correo}}</h5>
+            <button ion-button color="default" onclick="QRGenerator(u.$key)">Muestra tu QR</button>
+            <div id="qrcode"></div>
         </div>
     </div>
 </ion-content>
