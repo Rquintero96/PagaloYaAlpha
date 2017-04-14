@@ -5,7 +5,8 @@ import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
 
 // Plugin nativo de codigos de barra
-import {BarcodeScanner, BarcodeScannerOptions} from '@ionic-native/barcode-scanner';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2";
 
 @Component({
   selector: 'page-home',
@@ -18,7 +19,7 @@ export class HomePage {
   opciones: BarcodeScannerOptions;
 
 //Constructor por defecto
-  constructor( private barcode: BarcodeScanner, public navCtrl: NavController) {
+  constructor( private barcode: BarcodeScanner, public navCtrl: NavController,public database: AngularFireDatabase) {
 
   }
 
@@ -43,6 +44,7 @@ export class HomePage {
   .then((resultado) => {
       if (!resultado.cancelled)
       {
+        console.log("Scan exitoso");
         this.irApago(resultado);
         // Quitar en Produccion:
         console.log("Scan exitoso");
@@ -60,11 +62,12 @@ export class HomePage {
     if (resultado)
     {
           let usuarioApagar_id : String = resultado.text; // Buscar con este id
-          let usuarioApagar; // <----- Guardar el Usuarios acá luego
+          let usuarioApagar: FirebaseObjectObservable<any>; // <----- Guardar el Usuarios acá luego
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
-    
+          usuarioApagar = this.database.object('/items/${usuarioApagar_id}');
+          
           this.navCtrl.push(PagarFase1, {
           usuarioApagar: usuarioApagar, 
           qr: resultado
