@@ -45,7 +45,9 @@ export class HomePage {
   .then((resultado) => {
       if (!resultado.cancelled)
       {
-        console.log("Scan exitoso");
+
+        
+
         this.irApago(resultado);
         // Quitar en Produccion:
         console.log("Scan exitoso");
@@ -60,14 +62,14 @@ export class HomePage {
 
   private irApago(resultado)
   {
-    if (resultado)
-    {
-          this.textoEscaneado = resultado.text;
+
+          
           let usuarioApagar_id : string = resultado.text; // Buscar con este id
           let usuarioApagar: FirebaseObjectObservable<any>; // <----- Guardar el Usuarios acá luego
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
+          this.textoEscaneado = resultado.text;
           
           usuarioApagar = this.database.object('/User/'+usuarioApagar_id);
           
@@ -75,7 +77,7 @@ export class HomePage {
           usuarioApagar: usuarioApagar, 
           qr: resultado
           });
-    }
+    
 
   }
 
