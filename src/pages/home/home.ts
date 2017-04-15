@@ -18,6 +18,7 @@ export class HomePage {
   public textoEscaneado: string;
   opciones: BarcodeScannerOptions;
   test: String
+  public usuarioEscaneado: string;
 
 //Constructor por defecto
   constructor( private barcode: BarcodeScanner, public navCtrl: NavController,public database: AngularFireDatabase) {
@@ -69,10 +70,10 @@ export class HomePage {
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
-          this.textoEscaneado = resultado.text;
+          this.textoEscaneado = usuarioApagar_id;
           
           this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
-
+              this.usuarioEscaneado = _data.Nombre;
               this.navCtrl.push(PagarFase1, {
               usuarioApagar: _data, 
               qr: resultado
