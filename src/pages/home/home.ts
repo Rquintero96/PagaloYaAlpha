@@ -16,7 +16,7 @@ export class HomePage {
 
   // Atributos
   public textoEscaneado: string;
-  usuarioApagar: FirebaseListObservable<any>;
+  usuarioApagar: FirebaseObjectObservable<any>;
   opciones: BarcodeScannerOptions;
   tests: String
   public usuarioEscaneado: string;
@@ -73,15 +73,17 @@ export class HomePage {
           */
           
           
-         this.usuarioApagar =this.database.list('/User', {
-              query:{
-              orderByKey: true,
-              equalTo: usuarioApagar_id
-            }
-          });
+         this.usuarioApagar = this.database.object('/User/-KhUxoaDXsMYe0x1-Ggf');
+         var obj = this.usuarioApagar.subscribe(snapshot => {return snapshot} );
+
 
           this.textoEscaneado = usuarioApagar_id;
           
+
+          this.navCtrl.push(PagarFase1, {
+              usuarioApagar: obj
+              });
+
            //this.usuarioEscaneado = this.usuarioApagar.Nombre;
 
           /*this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
