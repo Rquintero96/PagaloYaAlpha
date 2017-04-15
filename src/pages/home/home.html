@@ -27,7 +27,7 @@
     </div>
 
     <p>Id : {{textoEscaneado}}</p> 
-    <p>Usuario me lo mama: {{usuarioEscaneado}} </p>
+    <p *ngFor="let u of user | async">Usuario me lo mama: {{u.Nombre}} </p>
     
 
 
