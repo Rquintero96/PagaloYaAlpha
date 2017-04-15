@@ -71,12 +71,16 @@ export class HomePage {
           */
           this.textoEscaneado = resultado.text;
           
-          usuarioApagar = this.database.object('/User/'+usuarioApagar_id);
+          this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
+
+              this.navCtrl.push(PagarFase1, {
+              usuarioApagar: _data, 
+              qr: resultado
+              });
+              
+            })
           
-          this.navCtrl.push(PagarFase1, {
-          usuarioApagar: usuarioApagar, 
-          qr: resultado
-          });
+         
     
 
   }
