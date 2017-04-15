@@ -25,6 +25,7 @@ monto:any;
 
   pagar() {
     // Clave introducidad por el usuario. Esta clave se debe comparar con ClavePago de Firebase
+    this.user.subscribe(snapshot => console.log(snapshot.Nombre));
     console.log("Clave: "+this.clave);
     console.log("Monto: "+this.monto);
   }
