@@ -16,8 +16,9 @@ export class HomePage {
 
   // Atributos
   public textoEscaneado: string;
+  usuarioApagar: FirebaseListObservable<any>;
   opciones: BarcodeScannerOptions;
-  test: String
+  tests: String
   public usuarioEscaneado: string;
 
 //Constructor por defecto
@@ -66,18 +67,24 @@ export class HomePage {
 
           
           let usuarioApagar_id : string = resultado.text; // Buscar con este id
-          let usuarioApagar: FirebaseListObservable<any>; // <----- Guardar el Usuarios acá luego
+           // <----- Guardar el Usuarios acá luego
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
           this.textoEscaneado = usuarioApagar_id;
           
-          this.database.list('/User', {
+         this.usuarioApagar =this.database.list('/User', {
               query:{
               orderByKey: true,
               equalTo: usuarioApagar_id
             }
           });
+
+           //this.usuarioEscaneado = this.usuarioApagar.Nombre;
+              this.navCtrl.push(PagarFase1, {
+              usuarioApagar: this.usuarioApagar, 
+              qr: resultado
+              });
 
           /*this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
               this.usuarioEscaneado = _data.Nombre;
