@@ -71,7 +71,7 @@ export class HomePage {
           /*
           Aqui va el fetch a fire base con el id del usuario
           */
-          this.textoEscaneado = usuarioApagar_id;
+          
           
          this.usuarioApagar =this.database.list('/User', {
               query:{
@@ -80,11 +80,9 @@ export class HomePage {
             }
           });
 
+          this.textoEscaneado = usuarioApagar_id;
+          
            //this.usuarioEscaneado = this.usuarioApagar.Nombre;
-              this.navCtrl.push(PagarFase1, {
-              usuarioApagar: this.usuarioApagar, 
-              qr: resultado
-              });
 
           /*this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
               this.usuarioEscaneado = _data.Nombre;
