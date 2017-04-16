@@ -14,7 +14,7 @@ export class Contactos {
                 public alertController: AlertController, 
                   public database: AngularFireDatabase) {
       
-      this.user = this.database.list('/contacto', '/User');
+      this.user = this.database.list('/contacto');
   }
 
   createUser() {

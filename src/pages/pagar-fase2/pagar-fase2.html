@@ -12,22 +12,22 @@
 
         <br><br><br>
         <ion-item>
-            Beneficiario: {{(user | async)?.Nombre}} {{(user | async)?.Apellido}}
+            Beneficiario: {{(uDest | async)?.Nombre}} {{(uDest | async)?.Apellido}}
         </ion-item>
 
         <ion-item>
-            Banco: {{(user | async)?.Cuentas.Cuenta2.Banco}}
+            Banco: {{(uDest | async)?.Cuentas.Cuenta2.Banco}}
         </ion-item>
 
         <ion-item>
-            Cuenta Destino: {{(user | async)?.Cuentas.Cuenta2.Numero}}
+            Cuenta Destino: {{(uDest | async)?.Cuentas.Cuenta2.Numero}}
         </ion-item>
 
         <ion-item>
             <ion-label color="placeholder">Cuenta Origen</ion-label>
-            <ion-select [(ngModel)]="user2.Cuentas">
-                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta1.Numero}}">{{(user2 | async)?.Cuentas.Cuenta1.Numero}}</ion-option>
-                <ion-option value="{{(user2 | async)?.Cuentas.Cuenta2.Numero}}">{{(user2 | async)?.Cuentas.Cuenta2.Numero}}</ion-option>
+            <ion-select [(ngModel)]="User.Cuentas">
+                <ion-option value="{{(User | async)?.Cuentas.Cuenta1.Numero}}">{{(User | async)?.Cuentas.Cuenta1.Numero}}</ion-option>
+                <ion-option value="{{(User | async)?.Cuentas.Cuenta2.Numero}}">{{(User | async)?.Cuentas.Cuenta2.Numero}}</ion-option>
             </ion-select>
         </ion-item>
 
