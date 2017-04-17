@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import {Platform} from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
 
-// Plugin nativo de codigos de barra
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2";
+import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2";
 
 @Component({
   selector: 'page-home',
@@ -15,15 +15,20 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 export class HomePage {
 
   // Atributos
-  public textoEscaneado: string;
+  private plt:Platform; 
+  textoEscaneado: any;
+  usuarioApagar_id : any;
   usuarioApagar: FirebaseObjectObservable<any>;
   opciones: BarcodeScannerOptions;
-  tests: String
-  public usuarioEscaneado: string;
+  obj : any ;
+  obj2 : any ;
 
 //Constructor por defecto
-  constructor( private barcode: BarcodeScanner, public navCtrl: NavController,public database: AngularFireDatabase) {
-
+  constructor( private platform: Platform, private barcode: BarcodeScanner, private navCtrl: NavController, private  af: AngularFire) {
+    this.usuarioApagar = this.af.database.object('/User/-KhUY7ugwy_VJqJXIDay');
+    this.obj2 = this.usuarioApagar.subscribe(snapshot => {return snapshot} );
+    this.plt = platform;
+    this.textoEscaneado='hola';
   }
 
   // Funciones
@@ -39,64 +44,35 @@ export class HomePage {
   public ScannearCodigo() // Boton de pagar
   {
 
-  this.opciones = {
-    prompt: 'Escanea un codigo para pagar'
+        this.plt.ready().then(() => {
+            this.barcode.scan().then((resultado) => {
+                if (!resultado.cancelled) 
+                {
+                   this.usuarioApagar_id = resultado.text; // Buscar con este id
+
+
+                  this.textoEscaneado = this.usuarioApagar_id;
+          
+
+                  this.navCtrl.push(PagarFase1);
+                }
+            }, (error) => {
+                console.log('error');
+
+            });
+        });         
+
   }
 
-  this.barcode.scan()
-  .then((resultado) => {
-      if (!resultado.cancelled)
-      {
 
-        
 
-        this.irApago(resultado);
-        // Quitar en Produccion:
-        console.log("Scan exitoso");
-        console.log(resultado.text);
-      }
-    })
-  .catch((err) => {
-      console.log(err);
-      alert(err);
-    })
-  }
 
   private irApago(resultado)
   {
 
           
-          let usuarioApagar_id : string = resultado.text; // Buscar con este id
-           // <----- Guardar el Usuarios acá luego
-          /*
-          Aqui va el fetch a fire base con el id del usuario
-          */
-          
-          
-         this.usuarioApagar = this.database.object('/User/-KhUxoaDXsMYe0x1-Ggf');
-         var obj = this.usuarioApagar.subscribe(snapshot => {return snapshot} );
+        
 
-
-          this.textoEscaneado = usuarioApagar_id;
-          
-
-          this.navCtrl.push(PagarFase1, {
-              usuarioApagar: obj
-              });
-
-           //this.usuarioEscaneado = this.usuarioApagar.Nombre;
-
-          /*this.database.object('/User/'+usuarioApagar_id).subscribe((_data)=> {
-              this.usuarioEscaneado = _data.Nombre;
-              this.navCtrl.push(PagarFase1, {
-              usuarioApagar: _data, 
-              qr: resultado
-              });
-              
-            })*/
-          
-         
-    
 
   }
 

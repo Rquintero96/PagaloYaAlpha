@@ -19,16 +19,19 @@
   <ion-icon name="download"></ion-icon>
   Recibir
 </button>
+
+
+
         <br>
-        <button ion-button icon-left outline (click)="irPagarFase2()">
+<button ion-button icon-left outline (click)="irPagarFase2()">
   <ion-icon name="flash"></ion-icon>
   Vent. Pago
 </button>
     </div>
 
-    <p>Id2: {{textoEscaneado}}</p> 
+    <p>Id6 : {{textoEscaneado}}</p> 
     <p>---------------------------</p>
-    <p *ngFor="let u of usuarioApagar | async">  </p>
+    <p > Usuario : {{(usuarioApagar | async)?.Nombre}}  </p>
     
 
 

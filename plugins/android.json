@@ -7,25 +7,25 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
-        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
-        },
-        "cordova-plugin-whitelist": {
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
         },
-        "phonegap-plugin-barcodescanner": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.pagaloyaalpha935347"
         }
     },
