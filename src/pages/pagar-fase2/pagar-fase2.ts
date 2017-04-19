@@ -14,6 +14,7 @@ uDest: FirebaseObjectObservable<any>;
 User: FirebaseObjectObservable<any>;
 trans: FirebaseListObservable<any>;
 saldo: FirebaseListObservable<any>;
+private usuarioApagar: any;
 clave:any;
 monto:any;
 clavep:any;
@@ -33,6 +34,7 @@ montofinal:any;
        this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay');
        this.trans = this.database.list('/Transacciones');
        this.saldo = this.database.list('/Saldo/-KhUY7ugwy_VJqJXIDay');
+       this.usuarioApagar = navParams.get('usuarioApagar');
 
 
 

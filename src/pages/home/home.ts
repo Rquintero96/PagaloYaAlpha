@@ -20,13 +20,12 @@ export class HomePage {
   usuarioApagar_id : any;
   usuarioApagar: FirebaseObjectObservable<any>;
   opciones: BarcodeScannerOptions;
-  obj : any ;
-  obj2 : any ;
+  opbjetoApasar : any ;
+  
 
 //Constructor por defecto
   constructor( private platform: Platform, private barcode: BarcodeScanner, private navCtrl: NavController, private  af: AngularFire) {
-    this.usuarioApagar = this.af.database.object('/User/-KhUY7ugwy_VJqJXIDay');
-    this.obj2 = this.usuarioApagar.subscribe(snapshot => {return snapshot} );
+    
     this.plt = platform;
     this.textoEscaneado='hola';
   }
@@ -48,32 +47,38 @@ export class HomePage {
             this.barcode.scan().then((resultado) => {
                 if (!resultado.cancelled) 
                 {
-                   this.usuarioApagar_id = resultado.text; // Buscar con este id
+                  this.usuarioApagar_id = resultado.text; // Buscar con este id
 
+                  this.usuarioApagar = this.af.database.object('/User/'+this.usuarioApagar_id);
+                  this.usuarioApagar.subscribe(snapshot => {
+                    //armamos el objeto a pasar
+                    this.opbjetoApasar = {
+                      Nombre: snapshot.Nombre,
+                      Id: this.usuarioApagar_id,
 
-                  this.textoEscaneado = this.usuarioApagar_id;
+                    }
+                  
+                } );
+
+                  this.textoEscaneado = this.usuarioApagar_id; // Para probar solamente
           
+                  this.irApago(this.opbjetoApasar);
 
-                  this.navCtrl.push(PagarFase1);
+                  
                 }
             }, (error) => {
                 console.log('error');
 
             });
-        });         
+        });
 
+        
   }
 
 
-
-
-  private irApago(resultado)
+  private irApago(opbjetoApasar)
   {
-
-          
-        
-
-
+    this.navCtrl.push(PagarFase1, {usuarioApagar: this.opbjetoApasar} );
   }
 
   private irPerfil(){

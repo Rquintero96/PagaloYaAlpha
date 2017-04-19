@@ -18,11 +18,12 @@ import { FirebaseObjectObservable, AngularFireDatabase } from "angularfire2";
 export class PagarFase1 {
 
   // Atributos
-  public usuarioApagar: any;
+  private usuarioApagar: any;
 
   // Constructor
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
     this.usuarioApagar = navParams.get('usuarioApagar'); //Inicializa el usuario escaneado con la data pasada del home.ts
+    
   }
 
   // Metodos
