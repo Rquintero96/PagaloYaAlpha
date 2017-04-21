@@ -32,7 +32,7 @@ export class HomePage {
     this.textoEscaneado='hola';
     this.transacciones = this.database.list('/Transacciones', { 
         query:{
-          limitToFirst: 5, 
+          limitToLast: 5, 
         }
       });
   }
