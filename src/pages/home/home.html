@@ -10,6 +10,32 @@
 <ion-content padding>
     <h1 align="center">Kek Labs</h1>
 
+    <div>
+        <ion-card>
+            <ion-card-header align="center">
+                Transaciones
+            </ion-card-header>
+            <div>
+                <ion-grid>
+                    <ion-row align="center">
+                        <ion-col>Origen</ion-col>
+                        <ion-col>Destino</ion-col>
+                        <ion-col>Monto</ion-col>
+                    </ion-row>
+                    <div *ngFor="let t of transacciones | async">
+                        <ion-row>
+                            <ion-col>{{t.CuentaOrigen}}</ion-col>
+                            <ion-col>{{t.CuentaDestino}}</ion-col>
+                            <ion-col>{{t.Monto}}</ion-col>
+                        </ion-row>
+                    </div>
+                </ion-grid>
+            </div>
+
+
+        </ion-card>
+    </div>
+
     <div align="center">
         <button ion-button icon-left outline (click)="ScannearCodigo()">
     <ion-icon name="card"></ion-icon>

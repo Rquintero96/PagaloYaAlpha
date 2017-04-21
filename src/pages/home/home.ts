@@ -6,7 +6,7 @@ import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
 
-import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from "angularfire2";
+import { AngularFire, FirebaseObjectObservable, FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 
 @Component({
   selector: 'page-home',
@@ -20,15 +20,24 @@ export class HomePage {
   usuarioApagar_id : any;
   usuarioApagar: FirebaseObjectObservable<any>;
   opciones: BarcodeScannerOptions;
-  opbjetoApasar : any ;
+  objetoApasar: any;
+  transacciones: FirebaseListObservable<any>;
+
   
 
 //Constructor por defecto
-  constructor( private platform: Platform, private barcode: BarcodeScanner, private navCtrl: NavController, private  af: AngularFire) {
+  constructor( private platform: Platform, private barcode: BarcodeScanner, private navCtrl: NavController, private  af: AngularFire, public database: AngularFireDatabase) {
     
     this.plt = platform;
     this.textoEscaneado='hola';
+    this.transacciones = this.database.list('/Transacciones', { 
+        query:{
+          limitToFirst: 5, 
+        }
+      });
   }
+
+
 
   // Funciones
 
@@ -51,14 +60,23 @@ export class HomePage {
 
                   this.usuarioApagar = this.af.database.object('/User/'+this.usuarioApagar_id);
                   this.usuarioApagar.subscribe(snapshot => {
+<<<<<<< HEAD
                     // Armamos el objeto a pasar
                     this.opbjetoApasar = snapshot;
+=======
+                    //armamos el objeto a pasar
+                    this.objetoApasar = {
+                      Nombre: snapshot.Nombre,
+                      Id: this.usuarioApagar_id,
+
+                    }
+>>>>>>> origin/master
                   
                 } );
 
                   this.textoEscaneado = this.usuarioApagar_id; // Para probar solamente
           
-                  this.irApago(this.opbjetoApasar);
+                  this.irApago(this.objetoApasar);
 
                   
                 }
@@ -72,9 +90,9 @@ export class HomePage {
   }
 
 
-  private irApago(opbjetoApasar)
+  private irApago(objetoApasar)
   {
-    this.navCtrl.push(PagarFase1, {usuarioApagar: this.opbjetoApasar} );
+    this.navCtrl.push(PagarFase1, {usuarioApagar: this.objetoApasar} );
   }
 
   private irPerfil(){
