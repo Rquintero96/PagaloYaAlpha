@@ -51,12 +51,8 @@ export class HomePage {
 
                   this.usuarioApagar = this.af.database.object('/User/'+this.usuarioApagar_id);
                   this.usuarioApagar.subscribe(snapshot => {
-                    //armamos el objeto a pasar
-                    this.opbjetoApasar = {
-                      Nombre: snapshot.Nombre,
-                      Id: this.usuarioApagar_id,
-
-                    }
+                    // Armamos el objeto a pasar
+                    this.opbjetoApasar = snapshot;
                   
                 } );
 
