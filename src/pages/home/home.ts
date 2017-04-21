@@ -85,7 +85,7 @@ export class HomePage {
   }
 
 
-  private irApago(opbjetoApasar)
+  private irApago(objetoApasar)
   {
     this.navCtrl.push(PagarFase1, {usuarioApagar: this.objetoApasar} );
   }
