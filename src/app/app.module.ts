@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler  } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +13,7 @@ import { Tabs } from '../pages/tabs/tabs';
 import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pages/pagar-fase2/pagar-fase2';
 import { Perfil } from '../pages/perfil/perfil';
+import { Qrcode } from '../pages/qrcode/qrcode';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,7 +42,8 @@ export const firebaseConfig = {
     Tabs,
     PagarFase1,
     PagarFase2,
-    Perfil
+    Perfil,
+    Qrcode
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -51,6 +54,7 @@ export const firebaseConfig = {
       tabsPlacement: 'bottom',
       pageTransition: 'ios-transition'
     }),
+    QRCodeModule,
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
@@ -64,7 +68,8 @@ export const firebaseConfig = {
     Tabs,
     PagarFase1,
     PagarFase2,
-    Perfil
+    Perfil,
+    Qrcode
   ],
   providers: [
     StatusBar,

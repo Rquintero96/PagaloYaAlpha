@@ -5,6 +5,7 @@ import { NavController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
+import { Qrcode } from '../qrcode/qrcode';
 
 import { AngularFire, FirebaseObjectObservable, FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 
@@ -84,6 +85,10 @@ export class HomePage {
         
   }
 
+  private MostrarCodigo()
+  {
+    this.navCtrl.push(Qrcode);
+  }
 
   private irApago(objetoApasar)
   {
