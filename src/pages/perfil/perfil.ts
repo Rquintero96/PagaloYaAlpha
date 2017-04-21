@@ -16,7 +16,7 @@ export class Perfil {
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public database: AngularFireDatabase) {
       
        // Lo de rey 
-       this.user = this.user = this.database.list('/User', { 
+       this.user = this.database.list('/User', { 
         query:{
           orderByKey: true,
           equalTo: '-KhUY7ugwy_VJqJXIDay'
