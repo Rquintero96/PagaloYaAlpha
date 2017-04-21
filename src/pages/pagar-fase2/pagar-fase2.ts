@@ -33,7 +33,6 @@ montofinal:any;
   {
       
        this.usuarioApagar = navParams.get('usuarioApagar');
-       this.uDest = this.database.object('/User/'+this.usuarioApagar.id);
        this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
        this.trans = this.database.list('/Transacciones');
        this.saldo = this.database.list('/Saldo/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
@@ -44,6 +43,71 @@ montofinal:any;
   }
 
   private pagar() {
+
+// Jota
+
+ 
+this.User.subscribe(
+            snapshot => {
+
+            (this.clavep) = snapshot.ClavePago;
+            (this.cuenta) = snapshot.Cuentas.Cuenta1.Numero;
+            (this.nombre) =snapshot.Nombre;
+            (this.Userid) = snapshot.$key;    
+
+            if (this.clavep == this.clave){
+             let confirmacion = this.alertController.create({
+                  title: "Pago",
+                  message: "Pago realizado exitosamente!",
+                  buttons: [
+                  {
+                      text: "Listo",
+                      handler: data => {
+                      this.trans.push({
+                      CuentaOrigen: this.cuenta,
+                      Monto: '-'+this.monto,
+                      CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
+                      });
+                    
+    
+                      this.saldo.subscribe(
+                          snapshot2 => {
+                            (this.userSaldo) = snapshot2.Cuenta1.Saldo;
+                            if (this.userSaldo >= this.monto) 
+                            {
+                                this.montofinal = this.userSaldo - this.monto;
+
+                            }
+                            
+                          }); 
+                      
+                      this.navCtrl.push(Tabs);
+                      }
+                  }]
+              });
+
+              confirmacion.present(confirmacion);
+            }
+            else 
+            {
+              let negacion = this.alertController.create({
+                  title: "Pago",
+                  message: "La clave secreta no es correcta, vuelve a introducirla por favor!",
+                  buttons: [
+                  {
+                    text: "Ok",
+                    handler: data => {
+                    console.log(' ');
+                    }
+                  }
+                  ]
+              });
+              
+              negacion.present(negacion); 
+            }
+        });
+
+    /* Rocco
       this.uDest.subscribe (
         snapshot1 => {
 
@@ -96,7 +160,7 @@ montofinal:any;
                             }
                             
                           }
-                      ); */
+                      ); 
                       
                       this.navCtrl.push(Tabs);
                       }
@@ -134,4 +198,7 @@ montofinal:any;
       );
   }
 
+}*/
+
+  }
 }
