@@ -15,6 +15,7 @@ User: FirebaseObjectObservable<any>;
 trans: FirebaseListObservable<any>;
 saldo: FirebaseListObservable<any>;
 private usuarioApagar: any;
+
 clave:any;
 monto:any;
 clavep:any;
@@ -28,19 +29,21 @@ montofinal:any;
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
                   public navParams: NavParams, 
-                    public database: AngularFireDatabase) {
+                    public database: AngularFireDatabase) 
+  {
       
-       this.uDest = this.database.object('/User/-KhUxoaDXsMYe0x1-Ggf');
-       this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay');
-       this.trans = this.database.list('/Transacciones');
-       this.saldo = this.database.list('/Saldo/-KhUY7ugwy_VJqJXIDay');
        this.usuarioApagar = navParams.get('usuarioApagar');
+       this.uDest = this.database.object('/User/'+this.usuarioApagar.id);
+       this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
+       this.trans = this.database.list('/Transacciones');
+       this.saldo = this.database.list('/Saldo/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
+
 
 
 
   }
 
-  pagar() {
+  private pagar() {
       this.uDest.subscribe (
         snapshot1 => {
 
