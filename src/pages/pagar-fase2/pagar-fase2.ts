@@ -65,25 +65,21 @@ this.User.subscribe(
                       handler: data => {
                       this.trans.push({
                       CuentaOrigen: this.cuenta,
-                      Monto: this.monto,
+                      Monto: '-'+this.monto,
                       CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
                       });
                     
     
-                      /* this.saldo.subscribe(
+                      this.saldo.subscribe(
                           snapshot2 => {
                             (this.userSaldo) = snapshot2.Cuenta1.Saldo;
-                            console.log(this.userSaldo);
-                            if (this.userSaldo >= this.monto) {
+                            if (this.userSaldo >= this.monto) 
+                            {
                                 this.montofinal = this.userSaldo - this.monto;
-                                console.log(this.montofinal);
-                                this.saldo.push({
-                                Cuenta1: {Numero: this.cuenta}              
-                                });
+
                             }
                             
-                          }
-                      ); */
+                          }); 
                       
                       this.navCtrl.push(Tabs);
                       }
@@ -92,7 +88,8 @@ this.User.subscribe(
 
               confirmacion.present(confirmacion);
             }
-            else {
+            else 
+            {
               let negacion = this.alertController.create({
                   title: "Pago",
                   message: "La clave secreta no es correcta, vuelve a introducirla por favor!",
@@ -110,7 +107,7 @@ this.User.subscribe(
             }
         });
 
-    // Rocco
+    /* Rocco
       this.uDest.subscribe (
         snapshot1 => {
 
@@ -163,7 +160,7 @@ this.User.subscribe(
                             }
                             
                           }
-                      ); */
+                      ); 
                       
                       this.navCtrl.push(Tabs);
                       }
@@ -201,4 +198,7 @@ this.User.subscribe(
       );
   }
 
+}*/
+
+  }
 }
