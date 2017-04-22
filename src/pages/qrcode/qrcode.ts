@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {QRCodeComponent} from 'angular2-qrcode';
+import { FirebaseObjectObservable, AngularFireDatabase, AngularFire } from "angularfire2";
+
 /**
  * Generated class for the Qrcode page.
  *
@@ -13,8 +15,15 @@ import {QRCodeComponent} from 'angular2-qrcode';
   templateUrl: 'qrcode.html',
 })
 export class Qrcode {
+private usuarioActual:FirebaseObjectObservable<any>;
+usuarioActual_id: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private  af: AngularFire) {
+     this.usuarioActual = this.af.database.object('/User/-KhUY7ugwy_VJqJXIDay');
+                  this.usuarioActual.subscribe(snapshot => {
+                    this.usuarioActual_id = snapshot.$key;
+                  
+                } );
   }
 
   ionViewDidLoad() {
