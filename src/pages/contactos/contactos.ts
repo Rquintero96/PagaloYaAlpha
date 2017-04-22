@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
+import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
+import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 
 @Component({
   selector: 'page-contactos',
@@ -9,12 +10,13 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 export class Contactos {
 
   user: FirebaseListObservable<any>;
+  usuarioApagar: FirebaseObjectObservable<any>;
 
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
                   public database: AngularFireDatabase) {
       
-      this.user = this.database.list('/contacto');
+      this.user = this.database.list('/Contactos/-KhUY7ugwy_VJqJXIDay');
   }
 
   createUser() {
@@ -31,6 +33,10 @@ export class Contactos {
             placeholder: "Apellido"
           },
           {
+            name: "Nickname",
+            placeholder: "Nickname"
+          },
+          {
             name: "Telefono",
             placeholder: "Telefono"
           },
@@ -41,14 +47,6 @@ export class Contactos {
           {
             name: "CuentaPrincipal",
             placeholder:"Cuenta Principal"
-          },
-          {
-            name: "BancoSecundario",
-            placeholder:"Banco Secundario"
-          },
-          {
-            name: "CuentaSecundaria",
-            placeholder:"Cuenta Secundaria"
           },
           {
             name: "Correo",
@@ -67,9 +65,9 @@ export class Contactos {
             handler: data => {
               this.user.push({
                   Nombre: data.Nombre,
+                  Nickname: data.Nickname,
                   Telefono: data.Telefono,
-                  Cuentas:{Cuenta1: {Numero: data.CuentaPrincipal, Banco: data.BancoPrincipal}, 
-                           Cuenta2: {Numero:data.CuentaSecundaria, Banco: data.BancoSecundario}},
+                  Cuentas:{Cuenta1: {Numero: data.CuentaPrincipal, Banco: data.BancoPrincipal}},
                   Apellido: data.Apellido,
                   Correo: data.Correo
               });
@@ -197,17 +195,25 @@ export class Contactos {
           {
             name: "Banco",
             placeholder: "Banco",
-            value: u.Banco
+            value: u.Cuentas.Cuenta1.Banco
           },
           {
             name: "Cuenta",
             placeholder: "Cuenta Bancaria",
-            value: u.Cuenta
+            value: u.Cuentas.Cuenta1.Numero
           },
           {
             name: "Correo",
             placeholder: "Correo",
             value: u.Correo
+          }
+        ],
+        buttons: [
+           {
+            text: "Atrás",
+            handler: data => {
+              console.log('Atrás');
+            }
           }
         ]
 
@@ -215,6 +221,10 @@ export class Contactos {
 
     showUserModal.present(showUserModal);
 
+  }
+
+  private irPagarFase2(u){
+    this.navCtrl.push(PagarFase2);
   }
 
 }

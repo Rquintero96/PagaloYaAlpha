@@ -25,14 +25,14 @@
     <ion-list>
         <ion-item-sliding *ngFor="let u of user | async">
             <ion-item>
-                <ion-label>
-                    <ion-icon name="contact" item-left class="custom-icon-contact"> {{ u.Nombre }} {{u.Apellido}}</ion-icon>
-                    <br> Banco: {{ u.Cuentas.Cuenta1.Banco }}
-                </ion-label>
+                {{ u.Nickname}}
+                <button ion-button outline item-right icon-left (click)="irPagarFase2(u)">
+      <ion-icon name="card"></ion-icon>
+      Pagar
+    </button>
             </ion-item>
-
             <ion-item-options>
-                <button ion-button color="secondary" (click)="updateUser(u)">Editar</button>
+                <button ion-button color="secondary" (click)="showUser(u)">Ver</button>
                 <button ion-button color="danger" (click)="removeUser(u)">Borrar</button>
             </ion-item-options>
         </ion-item-sliding>
