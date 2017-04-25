@@ -63,12 +63,14 @@ export class HomePage {
                   this.usuarioApagar.subscribe(snapshot => {
                     //armamos el objeto a pasar
                     this.objetoApasar = snapshot;
-                    
+                     this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
                 } );
+
+                  
 
                   this.textoEscaneado = this.usuarioApagar_id; // Para probar solamente
                   
-                  this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
+                 
                   //this.irApago(this.objetoApasar);
 
                   
