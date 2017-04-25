@@ -63,12 +63,13 @@ export class HomePage {
                   this.usuarioApagar.subscribe(snapshot => {
                     //armamos el objeto a pasar
                     this.objetoApasar = snapshot;
-                  
+                    
                 } );
 
                   this.textoEscaneado = this.usuarioApagar_id; // Para probar solamente
-          
-                  this.irApago(this.objetoApasar);
+                  
+                  this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
+                  //this.irApago(this.objetoApasar);
 
                   
                 }
@@ -88,7 +89,7 @@ export class HomePage {
 
   private irApago(objetoApasar)
   {
-    this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
+    this.navCtrl.push( PagarFase1, {usuarioApagar: objetoApasar} );
   }
 
   private irPerfil(){
