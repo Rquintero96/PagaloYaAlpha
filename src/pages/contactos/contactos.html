@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -21,12 +21,16 @@
 </ion-header>
 
 <ion-content padding>
-
+    <div align="center">
+        <p>Desliza hacia la izquierda para ver mas información</p>
+    </div>
     <ion-list>
         <ion-item-sliding *ngFor="let u of user | async">
             <ion-item>
-                {{ u.Nickname}}
-                <button ion-button outline item-right icon-left (click)="irPagarFase2(u)">
+                <div>
+                    {{ u.Nickname}}
+                </div>
+                <button color="greeen" ion-button outline item-right icon-left (click)="irPagarFase2(u)">
       <ion-icon name="card"></ion-icon>
       Pagar
     </button>

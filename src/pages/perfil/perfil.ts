@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 // import * as QR from '../assets/scripts/qrcode';
 import { Tabs } from '../tabs/tabs';
+import { Qrcode } from '../qrcode/qrcode';
 
 
 @Component({
@@ -102,6 +103,11 @@ export class Perfil {
 
     });
     updateUserModal.present(updateUserModal);
+  }
+
+  private MostrarCodigo()
+  {
+    this.navCtrl.push(Qrcode);
   }
 
 
