@@ -29171,6 +29171,29 @@ page-contactos p {
   color: #A3A3A3;
 }
 
+page-home .fab[mini] {
+  margin: 30px;
+  width: 70px;
+  height: 70px;
+  line-height: 40px;
+}
+
+page-pagar-fase1 #Imagen {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #E91E63;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 80px;
+  margin: 15px 0;
+}
+
+page-pagar-fase1 p {
+  font-size: 60px;
+}
+
 page-perfil h3 {
   color: blue;
 }

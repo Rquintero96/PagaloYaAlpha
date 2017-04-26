@@ -20,11 +20,12 @@ export class PagarFase1 {
   // Atributos
   private usuarioApagar: any;
   private Contactos: FirebaseListObservable<any>;
+  private avatar: string;
 
   // Constructor
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase,  private alertController: AlertController) {
     this.usuarioApagar = navParams.get('usuarioApagar'); //Inicializa el usuario escaneado con la data pasada del home.ts
-    
+    this.avatar = this.usuarioApagar.Nombre.charAt(0) + "" + this.usuarioApagar.Apellido.charAt(0);
   }
 
   // Metodos

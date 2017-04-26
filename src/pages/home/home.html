@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-    <h1 align="center">Bienvenido Reynaldo!</h1>
+    <h1 align="center" style="padding-top:30px;">¡Bienvenido Reynaldo!</h1>
 
     <div>
         <ion-card>
-            <ion-card-header align="center" style="background-color: #E1BEE7;">
+            <ion-card-header align="center" style="background-color: #90CAF9;">
                 <strong>Transaciones Recientes:</strong>
             </ion-card-header>
             <div>
@@ -42,30 +42,22 @@
 
         <!-- this fab is placed at bottom right -->
         <ion-fab bottom right >
-        <button ion-fab (click)="ScannearCodigo()">
+        <button ion-fab mini (click)="ScannearCodigo()">
             <ion-icon name="card"></ion-icon>
         </button>
+        Pagar
         </ion-fab>
 
         <!-- this fab is placed at bottom left -->
         <ion-fab bottom left >
-        <button ion-fab (click)="MostrarCodigo()">
-            <ion-icon name="ion-chevron-down"></ion-icon>
+        <button ion-fab mini (click)="MostrarCodigo()">
+            <ion-icon name="download"></ion-icon>
         </button>
+        Recibir
         </ion-fab>
 
     
 
     </div>
-
-    <p>Id6 : {{textoEscaneado}}</p> 
-    <p>---------------------------</p>
-    <p > Usuario : {{(usuarioApagar | async)?.Nombre}}  </p>
-    
-
-
-
-
-
 
 </ion-content>
