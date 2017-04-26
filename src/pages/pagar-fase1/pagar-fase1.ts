@@ -59,7 +59,7 @@ export class PagarFase1 {
                   }
                   ]
               });
-                return ;
+
             });
 
     // Aqui guarda usuarioApagar como un contacto nuevo (Usar codigo de rocco)
