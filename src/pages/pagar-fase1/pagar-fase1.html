@@ -17,13 +17,16 @@
     
     <ion-card-content>
       <ion-card-title>
-        <p> Usuario a pagar: {{usuarioApagar.Nombre}} </p>
+        <h1>Realizar Pago</h1>
       </ion-card-title>
 
     </ion-card-content>
      <!-- Aquí van mas detalles del usuario escaneado-->
+     <p>Usuario a pagar: {{usuarioApagar.Nombre}} </p>
+     <p>Cuenta Principal: {{usuarioApagar.Cuentas.Cuenta1.Numero}}</p>
     <ion-row no-padding>
-      <button ion-button block (click)="irPagarFase2()">Pagar</button>
+      <p>¿Realizar pago a {{usuarioApagar.Nombre}}? </p>
+      <button ion-button block (click)="irPagarFase2()">Aceptar</button>
     </ion-row>
   </ion-card>
   
