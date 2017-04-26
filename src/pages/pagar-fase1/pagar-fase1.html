@@ -23,9 +23,8 @@
                 <p> Usuario a pagar: <strong>{{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}} </strong></p>
               </div>
                 
-
-            <ion-row no-padding>
-                <p>¿ Quieres realizar un pago a <strong>{{usuarioApagar.Nombre}} ? </strong></p>
+                <p style="padding-bottom: 5px;">¿ Quieres realizar un pago a <strong>{{usuarioApagar.Nombre}}</strong>?</p>
+            <ion-row padding>
                 <button ion-button block (click)="irPagarFase2()">Aceptar</button>
             </ion-row>
 

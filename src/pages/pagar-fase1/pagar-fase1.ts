@@ -19,7 +19,7 @@ export class PagarFase1 {
 
   // Atributos
   private usuarioApagar: any;
-  private Contactos: FirebaseListObservable<any>;
+  private Contactos: FirebaseObjectObservable<any>;
   private avatar: string;
 
   // Constructor
@@ -38,16 +38,16 @@ export class PagarFase1 {
 
   private guardarEnContactos()
   {
-
-    this.Contactos = this.database.list('/Contactos/-KhUY7ugwy_VJqJXIDay'); // Cambiar en Login
-     this.Contactos.push({
+    let ContactoAguardar = {
                   Nombre: this.usuarioApagar.Nombre,
-                  Nickname: "",
+                  Nickname: this.usuarioApagar.Nombre,
                   Telefono: this.usuarioApagar.Telefono,
                   Cuentas:{Cuenta1: {Numero: this.usuarioApagar.Cuentas.Cuenta1.Numero, Banco: this.usuarioApagar.Cuentas.Cuenta2.Numero}},
                   Apellido: this.usuarioApagar.Apellido,
                   Correo: this.usuarioApagar.Correo
-              }).catch((err: any) => {
+                }
+    this.Contactos = this.database.object(`/Contactos/-KhUY7ugwy_VJqJXIDay/${this.usuarioApagar.id}`); // Cambiar en Login
+    this.Contactos.set(ContactoAguardar).catch((err: any) => {
                 let error = this.alertController.create({
                   title: "Error",
                   message: "Presentamos un error al procesar el pago, por favor intentelo nuevamente. Verifique su conexión a internet por favor. ",

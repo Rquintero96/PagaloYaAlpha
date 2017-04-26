@@ -29163,6 +29163,10 @@ ion-navbar.toolbar {
   }
 }
 
+page-bancos p {
+  color: #A3A3A3;
+}
+
 page-contactos h2 {
   color: #7C2C5C;
 }
@@ -29187,8 +29191,8 @@ page-pagar-fase1 #Imagen {
   font-size: 20px;
   color: #fff;
   text-align: center;
-  line-height: 70px;
-  margin: 15px 0;
+  line-height: 55px;
+  margin: 15px;
 }
 
 page-perfil h3 {

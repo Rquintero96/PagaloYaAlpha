@@ -77,6 +77,7 @@ export class HomePage {
                   this.usuarioApagar.subscribe(snapshot => {
                     //armamos el objeto a pasar
                     this.objetoApasar = snapshot;
+                    this.objetoApasar.id = snapshot.$key;
                     this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
                 } );
                                            
