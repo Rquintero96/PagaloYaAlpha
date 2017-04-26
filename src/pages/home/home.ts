@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import {Platform} from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
 import { Qrcode } from '../qrcode/qrcode';
+
 
 import { AngularFire, FirebaseObjectObservable, FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 
@@ -23,11 +24,15 @@ export class HomePage {
   opciones: BarcodeScannerOptions;
   objetoApasar: any;
   transacciones: FirebaseListObservable<any>;
+  opcionesDeScan: BarcodeScannerOptions;
 
   
 
 //Constructor por defecto
-  constructor( private platform: Platform, private barcode: BarcodeScanner, private navCtrl: NavController, private  af: AngularFire, public database: AngularFireDatabase) {
+  constructor( private platform: Platform, private barcode: BarcodeScanner, 
+  private navCtrl: NavController, private  af: AngularFire, 
+  public database: AngularFireDatabase, private alertController: AlertController) 
+  {
     
     this.plt = platform;
     this.textoEscaneado='hola';
@@ -36,25 +41,21 @@ export class HomePage {
           limitToLast: 5, 
         }
       });
+
+      this.opcionesDeScan = {
+        prompt:'Escanea un codigo para pagar'
+      }
   }
 
 
 
   // Funciones
 
-  /*CargarHomePage() {
-    this.eventId = this._navParams.get('eventId');
-    this.eventTitle = this._navParams.get('eventTitle');
-
-    this.buttonText = "Scan";
-    this.loading = false;
-  }*/
-
   public ScannearCodigo() // Boton de pagar
   {
 
         this.plt.ready().then(() => {
-            this.barcode.scan().then((resultado) => {
+            this.barcode.scan(this.opcionesDeScan).then((resultado) => {
                 if (!resultado.cancelled) 
                 {
                   this.usuarioApagar_id = resultado.text; // Buscar con este id
@@ -65,18 +66,22 @@ export class HomePage {
                     this.objetoApasar = snapshot;
                     this.navCtrl.push( PagarFase1, {usuarioApagar: this.objetoApasar} );
                 } );
-
-                  
-
-                  this.textoEscaneado = this.usuarioApagar_id; // Para probar solamente
-                  
-                 
-                  //this.irApago(this.objetoApasar);
-
-                  
+                                           
                 }
             }, (error) => {
-                console.log('error');
+                  let VentanaError = this.alertController.create({
+                  title: "Error",
+                  message: "Presentamos un error al procesar el pago, por favor intentelo nuevamente. Verifique su conexión a internet por favor. ",
+                  buttons: [
+                  {
+                    text: "Ok",
+                    handler: data => {
+                    }
+                  }
+                  ]
+              });
+
+                console.log('PC: error');
 
             });
         });

@@ -29172,10 +29172,11 @@ page-contactos p {
 }
 
 page-home .fab[mini] {
-  margin: 30px;
+  margin: 25px;
   width: 70px;
   height: 70px;
-  line-height: 40px;
+  line-height: 20px;
+  background-color: #2196F3;
 }
 
 page-pagar-fase1 #Imagen {
@@ -29186,12 +29187,8 @@ page-pagar-fase1 #Imagen {
   font-size: 20px;
   color: #fff;
   text-align: center;
-  line-height: 80px;
+  line-height: 70px;
   margin: 15px 0;
-}
-
-page-pagar-fase1 p {
-  font-size: 60px;
 }
 
 page-perfil h3 {
