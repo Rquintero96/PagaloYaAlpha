@@ -24,7 +24,11 @@ export class HomePage {
   opciones: BarcodeScannerOptions;
   objetoApasar: any;
   transacciones: FirebaseListObservable<any>;
+
   opcionesDeScan: BarcodeScannerOptions;
+
+
+  user: FirebaseListObservable<any>;
 
   
 
@@ -35,16 +39,25 @@ export class HomePage {
   {
     
     this.plt = platform;
-    this.textoEscaneado='hola';
-    this.transacciones = this.database.list('/Transacciones', { 
+    this.transacciones = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay', { 
         query:{
           limitToLast: 5, 
         }
       });
 
+
       this.opcionesDeScan = {
         prompt:'Escanea un codigo para pagar'
       }
+
+    
+    this.user = this.database.list('/User', { 
+        query:{
+          orderByKey: true,
+          equalTo: '-KhUY7ugwy_VJqJXIDay'
+        }
+      });
+    
   }
 
 

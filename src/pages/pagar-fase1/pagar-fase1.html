@@ -1,36 +1,35 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Información</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Información</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="cards-bg">
 
-    
-  <ion-card>
 
-    <!-- Aquí se podria poner avatar de la entidad-->
-    <div padding id="Imagen">{{avatar}}</div>
-    <ion-card-content>
+    <ion-card>
 
-      <ion-card-title>
-        <h1>Realizar Pago</h1>
-      </ion-card-title>
+        <!-- Aquí se podria poner avatar de la entidad-->
+        <div padding id="Imagen">{{avatar}}</div>
+        <ion-card-content>
 
-          <p> Usuario a pagar: <strong>{{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}} </strong></p>
-        <ion-row no-padding>
-          <p>¿ Quieres realizar un a <strong>{{usuarioApagar.Nombre}} ? </strong></p>
-          <button ion-button block (click)="irPagarFase2()">Aceptar</button>
-        </ion-row>
+            <ion-card-title>
+                <h1>Realizar Pago</h1>
+            </ion-card-title>
 
-    </ion-card-content>
-     
-  </ion-card>
-  
+            <p> Usuario a pagar: <strong>{{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}} </strong></p>
+            <ion-row no-padding>
+                <p>¿ Quieres realizar un pago a <strong>{{usuarioApagar.Nombre}} ? </strong></p>
+                <button ion-button block (click)="irPagarFase2()">Aceptar</button>
+            </ion-row>
 
-  
+        </ion-card-content>
+
+    </ion-card>
+
+
+
 </ion-content>

@@ -18,12 +18,13 @@
 
 <ion-content padding>
     <div align="center">
-        <p>Desliza hacia la izquierda para ver mas información</p>
+        <p>Desliza hacia la izquierda para ver mas información </p>
+
     </div>
     <ion-list>
         <ion-item-sliding *ngFor="let u of user | async">
             <ion-item>
-                <h2>Recibida de: {{ u.UsuarioDestino }}</h2>
+                <h2>Transacción n°: {{ u.Numero }}</h2>
                 <h3>Monto: {{ u.Monto }} Bs.</h3>
             </ion-item>
             <ion-item-options>
