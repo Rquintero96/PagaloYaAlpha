@@ -23,7 +23,7 @@ export class HomePage {
   opciones: BarcodeScannerOptions;
   objetoApasar: any;
   transacciones: FirebaseListObservable<any>;
-
+  user: FirebaseListObservable<any>;
   
 
 //Constructor por defecto
@@ -31,11 +31,19 @@ export class HomePage {
     
     this.plt = platform;
     this.textoEscaneado='hola';
-    this.transacciones = this.database.list('/Transacciones', { 
+    this.transacciones = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay', { 
         query:{
           limitToLast: 5, 
         }
       });
+    
+    this.user = this.database.list('/User', { 
+        query:{
+          orderByKey: true,
+          equalTo: '-KhUY7ugwy_VJqJXIDay'
+        }
+      });
+    
   }
 
 

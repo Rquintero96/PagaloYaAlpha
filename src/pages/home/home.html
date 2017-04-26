@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -8,56 +8,57 @@
 </ion-header>
 
 <ion-content padding>
-    <h1 align="center" style="padding-top:30px;">¡Bienvenido Reynaldo!</h1>
+    <div *ngFor="let u of user | async">
 
-    <div>
-        <ion-card>
-            <ion-card-header align="center" style="background-color: #90CAF9;">
-                <strong>Transaciones Recientes:</strong>
-            </ion-card-header>
-            <div>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col width-30><strong>Origen</strong></ion-col>
-                        <ion-col width-30><strong>Destino</strong></ion-col>
-                        <ion-col width-30><strong>Monto</strong></ion-col>
-                    </ion-row>
-                    <div *ngFor="let t of transacciones | async">
+        <h1 align="center" style="padding-top:30px;">¡Bienvenido {{ u.Nombre }}!</h1>
+
+        <div>
+            <ion-card>
+                <ion-card-header align="center" style="background-color: #90CAF9;">
+                    <strong>Transaciones Recientes</strong>
+                </ion-card-header>
+                <div>
+                    <ion-grid>
                         <ion-row>
-                            <ion-col width-25>{{t.CuentaOrigen}}</ion-col>
-                            <ion-col width-25>{{t.CuentaDestino}}</ion-col>
-                            <ion-col width-25>{{t.Monto}}</ion-col>
+                            <ion-col width-30><strong>Origen</strong></ion-col>
+                            <ion-col width-30><strong>Destino</strong></ion-col>
+                            <ion-col width-30><strong>Monto</strong></ion-col>
                         </ion-row>
-                    </div>
-                </ion-grid>
-            </div>
+                        <div *ngFor="let t of transacciones | async">
+                            <ion-row>
+                                <ion-col width-25>{{t.CuentaOrigen}}</ion-col>
+                                <ion-col width-25>{{t.CuentaDestino}}</ion-col>
+                                <ion-col width-25>{{t.Monto}}</ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-grid>
+                </div>
 
 
-        </ion-card>
-    </div>
+            </ion-card>
+        </div>
 
-    <div align="center">
-       
+        <div align="center">
 
 
-        <!-- this fab is placed at bottom right -->
-        <ion-fab bottom right >
-        <button ion-fab mini (click)="ScannearCodigo()">
+
+            <!-- this fab is placed at bottom right -->
+            <ion-fab bottom right>
+                <button ion-fab mini (click)="ScannearCodigo()">
             <ion-icon name="card"></ion-icon>
         </button>
-        Pagar
-        </ion-fab>
+            </ion-fab>
 
-        <!-- this fab is placed at bottom left -->
-        <ion-fab bottom left >
-        <button ion-fab mini (click)="MostrarCodigo()">
+            <!-- this fab is placed at bottom left -->
+            <ion-fab bottom left>
+                <button ion-fab mini (click)="MostrarCodigo()">
             <ion-icon name="download"></ion-icon>
         </button>
-        Recibir
-        </ion-fab>
+            </ion-fab>
 
-    
 
+
+        </div>
     </div>
 
 </ion-content>

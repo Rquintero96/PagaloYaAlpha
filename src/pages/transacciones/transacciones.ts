@@ -10,13 +10,11 @@ import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase }
 export class Transacciones {
 
   user: FirebaseListObservable<any>;
-  uDest: FirebaseObjectObservable<any>;
-  key: any;
 
   constructor(public navCtrl: NavController, public alertController: AlertController, public navParams: NavParams, public database: AngularFireDatabase) {
      
        this.user = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
-
+      
   }
 
   showTransac(u) {
@@ -55,7 +53,6 @@ export class Transacciones {
     showTransacModal.present(showTransacModal);
 
   }
-
-
+  
 }
 

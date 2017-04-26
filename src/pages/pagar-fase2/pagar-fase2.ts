@@ -15,6 +15,7 @@ User: FirebaseObjectObservable<any>;
 transO: FirebaseListObservable<any>;
 transD: FirebaseListObservable<any>;
 saldo: FirebaseObjectObservable<any>;
+trans: FirebaseObjectObservable<any>;
 private usuarioApagar: any;
 
 f:any;
@@ -28,6 +29,8 @@ nombre:any;
 Userid:any;
 userSaldo:any;
 montofinal:any;
+numero:any;
+numeron:any;
 
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
@@ -40,6 +43,7 @@ montofinal:any;
        this.transO = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
        this.transD = this.database.list('/Transacciones/'+this.usuarioApagar.$key);
        this.saldo = this.database.object('/Saldo/-KhUY7ugwy_VJqJXIDay/Cuenta1'); // Cambiar en login
+       this.trans = this.database.object('/Transacciones');
 
 
 
@@ -47,10 +51,6 @@ montofinal:any;
 
   private pagar() {
 
-  // Jota
-
-
- 
     this.User.subscribe(
             snapshot => {
 
@@ -66,18 +66,33 @@ montofinal:any;
                 this.saldo.subscribe(snapshot => {
                   if(snapshot.Saldo >= this.monto)
                   {
-                    this.transO.push({
-                        CuentaOrigen: this.cuenta,
-                        Monto: '-'+this.monto,
-                        CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
-                      });
+                   
+                    this.trans.subscribe(
+                        
+                        snapshot => {
 
-                    this.transD.push({
-                        CuentaOrigen: this.cuenta,
-                        Monto: '+'+this.monto,
-                        CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
-                      });
-                    
+                          (this.numero) = snapshot.ContadorT;
+                          console.log(this.numero);
+
+                          this.numeron = this.numero + 1;
+                          console.log(this.numeron);
+
+                          this.transO.push({
+                            CuentaOrigen: this.cuenta,
+                            Monto: '-'+this.monto,
+                            CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
+                            Numero: this.numeron
+                          });
+
+                          this.transD.push({
+                            CuentaOrigen: this.cuenta,
+                            Monto: '+'+this.monto,
+                            CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
+                            Numero: this.numeron
+                          });
+
+                    });
+
                     this.saldo.update({
                       Saldo: snapshot.Saldo - this.monto
                     });
