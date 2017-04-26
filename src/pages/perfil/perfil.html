@@ -1,6 +1,6 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>Perfil</ion-title>
         <ion-buttons start>
             <button ion-button icon-left clear (click)="goBack()">
@@ -37,6 +37,7 @@
         </div>
         <br>
         <div *ngFor="let u of user | async">
+            <br>
             <h3>{{u.Nombre}} {{u.Apellido}}</h3>
             <h5>Telefono: {{u.Telefono}} </h5>
             <h5>Cuenta principal n°: {{u.Cuentas.Cuenta1.Numero}}</h5>
@@ -44,7 +45,8 @@
             <h5>Cuenta secundaria n°: {{u.Cuentas.Cuenta2.Numero}}</h5>
             <h5>Banco: {{u.Cuentas.Cuenta2.Banco}}</h5>
             <h5>Correo: {{u.Correo}}</h5>
-            <button ion-button color="default" onclick="QRGenerator(u.$key)">Muestra tu QR</button>
+            <br>
+            <div align="center"><button ion-button color="default" (click)="MostrarCodigo()">Muestra tu QR</button></div>
             <div id="qrcode"></div>
         </div>
     </div>

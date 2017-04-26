@@ -23,6 +23,7 @@ export class Transacciones {
 
     let showTransacModal = this.alertController.create({
         title: "Información de la Transacción",
+        message: "Cuenta Destino, Cuenta Origen, Monto",
         inputs: [
           {
             name: "CuentaDestino",
