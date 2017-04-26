@@ -8,25 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-    <h1 align="center">Kek Labs</h1>
+    <h1 align="center">Bienvenido Reynaldo!</h1>
 
     <div>
         <ion-card>
-            <ion-card-header align="center">
-                Transaciones
+            <ion-card-header align="center" style="background-color: #E1BEE7;">
+                <strong>Transaciones Recientes:</strong>
             </ion-card-header>
             <div>
                 <ion-grid>
-                    <ion-row align="center">
-                        <ion-col>Origen</ion-col>
-                        <ion-col>Destino</ion-col>
-                        <ion-col>Monto</ion-col>
+                    <ion-row>
+                        <ion-col width-30><strong>Origen</strong></ion-col>
+                        <ion-col width-30><strong>Destino</strong></ion-col>
+                        <ion-col width-30><strong>Monto</strong></ion-col>
                     </ion-row>
                     <div *ngFor="let t of transacciones | async">
                         <ion-row>
-                            <ion-col>{{t.CuentaOrigen}}</ion-col>
-                            <ion-col>{{t.CuentaDestino}}</ion-col>
-                            <ion-col>{{t.Monto}}</ion-col>
+                            <ion-col width-25>{{t.CuentaOrigen}}</ion-col>
+                            <ion-col width-25>{{t.CuentaDestino}}</ion-col>
+                            <ion-col width-25>{{t.Monto}}</ion-col>
                         </ion-row>
                     </div>
                 </ion-grid>
@@ -37,23 +37,23 @@
     </div>
 
     <div align="center">
-        <button ion-button icon-left outline (click)="ScannearCodigo()">
-    <ion-icon name="card"></ion-icon>
-    Pagar
+       
+
+
+        <!-- this fab is placed at bottom right -->
+        <ion-fab bottom right >
+        <button ion-fab (click)="ScannearCodigo()">
+            <ion-icon name="card"></ion-icon>
         </button>
-        <button ion-button icon-left outline (click)="MostrarCodigo()">
-  <ion-icon name="download"></ion-icon>
-  Recibir
+        </ion-fab>
+
+        <!-- this fab is placed at bottom left -->
+        <ion-fab bottom left >
+        <button ion-fab (click)="MostrarCodigo()">
+            <ion-icon name="ion-chevron-down"></ion-icon>
         </button>
+        </ion-fab>
 
-
-
-        <br>
-<button ion-button icon-left outline (click)="irPagarFase2()">
-    
-  <ion-icon name="flash"></ion-icon>
-  Vent. Pago
-</button>
     
 
     </div>
@@ -62,6 +62,8 @@
     <p>---------------------------</p>
     <p > Usuario : {{(usuarioApagar | async)?.Nombre}}  </p>
     
+
+
 
 
 
