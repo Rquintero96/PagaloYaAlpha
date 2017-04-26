@@ -13,14 +13,17 @@
     <ion-card>
 
         <!-- Aquí se podria poner avatar de la entidad-->
-        <div padding id="Imagen">{{avatar}}</div>
+        <div style="padding:5%;" id="Imagen">{{avatar}}</div>
         <ion-card-content>
 
             <ion-card-title>
                 <h1>Realizar Pago</h1>
             </ion-card-title>
+              <div style="padding:5px;">
+                <p> Usuario a pagar: <strong>{{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}} </strong></p>
+              </div>
+                
 
-            <p> Usuario a pagar: <strong>{{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}} </strong></p>
             <ion-row no-padding>
                 <p>¿ Quieres realizar un pago a <strong>{{usuarioApagar.Nombre}} ? </strong></p>
                 <button ion-button block (click)="irPagarFase2()">Aceptar</button>
