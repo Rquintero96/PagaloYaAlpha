@@ -54,7 +54,6 @@ export class PagarFase1 {
                   {
                     text: "Ok",
                     handler: data => {
-                    console.log(' ');
                     }
                   }
                   ]
