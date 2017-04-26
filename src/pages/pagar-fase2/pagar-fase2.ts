@@ -44,10 +44,11 @@ montofinal:any;
 
   private pagar() {
 
-// Jota
+  // Jota
+
 
  
-this.User.subscribe(
+    this.User.subscribe(
             snapshot => {
 
             (this.clavep) = snapshot.ClavePago; // Cambiar en login
@@ -58,29 +59,35 @@ this.User.subscribe(
 
             if (this.clavep == this.clave)
             {
+              if(this.saldo['Cuenta1'].saldo >= this.monto)
+              {
+                this.trans.push({
+                        CuentaOrigen: this.cuenta,
+                        Monto: '-'+this.monto,
+                        CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
+                        });
+                
+                this.saldo['Cuenta1'].update({
+                  Numero: this.saldo['Cuenta1'].Numero,
+                  Saldo: this.saldo['Cuenta1'].Saldo - this.monto
+                });
 
-              this.trans.push({
-                      CuentaOrigen: this.cuenta,
-                      Monto: '-'+this.monto,
-                      CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
-                      });
-                    
-
-             let confirmacion = this.alertController.create({
-                  title: "Pago",
-                  message: "Pago realizado exitosamente!",
-                  buttons: [
-                  {
-                      text: "Listo",
-                      handler: data => {
+                let confirmacion = this.alertController.create({
+                    title: "Pago",
+                    message: "Pago realizado exitosamente!",
+                    buttons: [
+                    {
+                        text: "Listo",
+                        handler: data => {
                       
                       
-                      this.navCtrl.push(Tabs);
-                      }
-                  }]
-              });
+                        this.navCtrl.push(Tabs);
+                        }
+                    }]
+                });
 
-              confirmacion.present(confirmacion);
+                confirmacion.present(confirmacion);
+              }
             }
             else 
             {
