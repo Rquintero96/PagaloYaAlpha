@@ -12,8 +12,9 @@ export class PagarFase2 {
 
 uDest: FirebaseObjectObservable<any>;
 User: FirebaseObjectObservable<any>;
-trans: FirebaseListObservable<any>;
-saldo: FirebaseListObservable<any>;
+transO: FirebaseListObservable<any>;
+transD: FirebaseListObservable<any>;
+saldo: FirebaseObjectObservable<any>;
 private usuarioApagar: any;
 
 f:any;
@@ -36,9 +37,9 @@ montofinal:any;
       
        this.usuarioApagar = navParams.get('usuarioApagar');
        this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
-       this.trans = this.database.list('/Transacciones');
-       this.saldo = this.database.list('/Saldo/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
-       //this.f=this.saldo['Cuenta1'];
+       this.transO = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
+       this.transD = this.database.list('/Transacciones/'+this.usuarioApagar.$key);
+       this.saldo = this.database.object('/Saldo/-KhUY7ugwy_VJqJXIDay/Cuenta1'); // Cambiar en login
 
 
 
@@ -61,35 +62,57 @@ montofinal:any;
 
             if (this.clavep == this.clave)
             {
-              if(this.saldo['Cuenta1'].saldo >= this.monto)
-              {
-                this.trans.push({
+           //BEWARE, CHIGUIRE INCOMING
+                this.saldo.subscribe(snapshot => {
+                  if(snapshot.Saldo >= this.monto)
+                  {
+                    this.transO.push({
                         CuentaOrigen: this.cuenta,
                         Monto: '-'+this.monto,
                         CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
-                        });
-                
-                this.saldo['Cuenta1'].update({
-                  Numero: this.saldo['Cuenta1'].Numero,
-                  Saldo: this.saldo['Cuenta1'].Saldo - this.monto
-                });
+                      });
 
-                let confirmacion = this.alertController.create({
-                    title: "Pago",
-                    message: "Pago realizado exitosamente!",
-                    buttons: [
-                    {
+                    this.transD.push({
+                        CuentaOrigen: this.cuenta,
+                        Monto: '+'+this.monto,
+                        CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero
+                      });
+                    
+                    this.saldo.update({
+                      Saldo: snapshot.Saldo - this.monto
+                    });
+
+                    let confirmacion = this.alertController.create({
+                      title: "Pago",
+                      message: "Pago realizado exitosamente!",
+                      buttons: [
+                      {
                         text: "Listo",
                         handler: data => {
-                      
-                      
-                        this.navCtrl.push(Tabs);
+                          this.navCtrl.popToRoot();
                         }
-                    }]
+                      }]
                 });
 
                 confirmacion.present(confirmacion);
-              }
+
+                  }else{
+                    let confirmacion = this.alertController.create({
+                      title: "Saldo Insuficiente",
+                      message: "Usted no posee saldo suficiente para esta transaccion!",
+                      buttons: [
+                      {
+                        text: "Ok",
+                        handler: data => {
+                          console.log(' ');
+                        }
+                      }]
+                    });
+                  }
+                  }); 
+            //End of CHIGUIRE
+
+
             }
             else 
             {
