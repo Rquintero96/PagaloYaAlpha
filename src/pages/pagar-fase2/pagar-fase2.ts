@@ -29,8 +29,6 @@ nombre:any;
 Userid:any;
 userSaldo:any;
 montofinal:any;
-numero:any;
-numeron:any;
 
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
@@ -43,7 +41,6 @@ numeron:any;
        this.transO = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
        this.transD = this.database.list('/Transacciones/'+this.usuarioApagar.$key);
        this.saldo = this.database.object('/Saldo/-KhUY7ugwy_VJqJXIDay/Cuenta1'); // Cambiar en login
-       this.trans = this.database.object('/Transacciones');
 
 
 
@@ -66,32 +63,18 @@ numeron:any;
                 this.saldo.subscribe(snapshot => {
                   if(snapshot.Saldo >= this.monto)
                   {
-                   
-                    this.trans.subscribe(
-                        
-                        snapshot => {
 
-                          (this.numero) = snapshot.ContadorT;
-                          console.log(this.numero);
-
-                          this.numeron = this.numero + 1;
-                          console.log(this.numeron);
-
-                          this.transO.push({
+                     this.transO.push({
                             CuentaOrigen: this.cuenta,
                             Monto: '-'+this.monto,
                             CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
-                            Numero: this.numeron
                           });
 
                           this.transD.push({
                             CuentaOrigen: this.cuenta,
                             Monto: '+'+this.monto,
                             CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
-                            Numero: this.numeron
                           });
-
-                    });
 
                     this.saldo.update({
                       Saldo: snapshot.Saldo - this.monto
