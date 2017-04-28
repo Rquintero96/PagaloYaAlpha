@@ -42,7 +42,7 @@ montoactual:any;
        this.usuarioApagar = navParams.get('usuarioApagar');
        this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
        this.transO = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
-       this.transD = this.database.list('/Transacciones/'+this.usuarioApagar.$key);
+       this.transD = this.database.list('/Transacciones/'+this.usuarioApagar.id);
        this.saldo = this.database.object('/Saldo/-KhUY7ugwy_VJqJXIDay/Cuenta1'); // Cambiar en login
 
 

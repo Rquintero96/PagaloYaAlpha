@@ -29183,6 +29183,10 @@ page-home .fab[mini] {
   background-color: #2196F3;
 }
 
+page-home ion-icon {
+  font-size: 30px !important;
+}
+
 page-pagar-fase1 #Imagen {
   width: 75px;
   height: 75px;
