@@ -30,6 +30,9 @@ Userid:any;
 userSaldo:any;
 montofinal:any;
 
+montoactual:any;
+
+
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
                   public navParams: NavParams, 
@@ -61,23 +64,28 @@ montofinal:any;
             {
            //BEWARE, CHIGUIRE INCOMING
                 this.saldo.subscribe(snapshot => {
-                  if(snapshot.Saldo >= this.monto)
+                  this.montoactual = snapshot.Saldo;
+                });
+
+                if(this.montoactual >= this.monto)
                   {
 
-                     this.transO.push({
+                      this.transO.push({
                             CuentaOrigen: this.cuenta,
                             Monto: '-'+this.monto,
                             CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
                           });
 
-                          this.transD.push({
+                      this.transD.push({
                             CuentaOrigen: this.cuenta,
                             Monto: '+'+this.monto,
                             CuentaDestino: this.usuarioApagar.Cuentas.Cuenta1.Numero,
                           });
+                    
+                    let montoguardar = this.montoactual - this.monto;
 
                     this.saldo.update({
-                      Saldo: snapshot.Saldo - this.monto
+                      Saldo: montoguardar,
                     });
 
                     let confirmacion = this.alertController.create({
@@ -95,7 +103,7 @@ montofinal:any;
                 confirmacion.present(confirmacion);
 
                   }else{
-                    let confirmacion = this.alertController.create({
+                    let mensaje = this.alertController.create({
                       title: "Saldo Insuficiente",
                       message: "Usted no posee saldo suficiente para esta transaccion!",
                       buttons: [
@@ -106,8 +114,8 @@ montofinal:any;
                         }
                       }]
                     });
+                    mensaje.present(mensaje);
                   }
-                  }); 
             //End of CHIGUIRE
 
 
