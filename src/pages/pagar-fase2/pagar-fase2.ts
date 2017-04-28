@@ -92,7 +92,7 @@ export class PagarFase2 {
               Saldo: montoguardar,
             });
 
-             let montoguardar2 = this.montoactual2 + this.monto;
+             let montoguardar2: number = this.montoactual2+this.monto;
              
               this.saldo2.update({
               Saldo: montoguardar2,
