@@ -8,9 +8,12 @@
 
 <ion-content padding>
 
+
     <ion-list>
 
-        <br><br><br>
+         <h1><strong>Confirmación de pago</strong></h1>
+
+        <br><br>
         <ion-item>
             Beneficiario: {{usuarioApagar.Nombre}} {{usuarioApagar.Apellido}}
         </ion-item>
@@ -42,7 +45,7 @@
     </ion-list>
 
     <div align="center">
-        <button ion-button icon-left outline (click)="pagar()">
+        <button ion-button icon-left color="danger" round (click)="pagar()">
   <ion-icon name="flash"></ion-icon>
   Pagar
 </button>
