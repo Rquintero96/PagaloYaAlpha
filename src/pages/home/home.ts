@@ -5,8 +5,9 @@ import { NavController, AlertController } from 'ionic-angular';
 import { PagarFase1 } from '../pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 import { Perfil } from '../perfil/perfil';
+import { Login } from '../login/login';
 import { Qrcode } from '../qrcode/qrcode';
-
+import { AuthData } from '../../providers/auth-data';
 
 import { AngularFire, FirebaseObjectObservable, FirebaseListObservable, AngularFireDatabase } from "angularfire2";
 
@@ -35,10 +36,16 @@ export class HomePage {
 //Constructor por defecto
   constructor( private platform: Platform, private barcode: BarcodeScanner, 
   private navCtrl: NavController, private  af: AngularFire, 
-  public database: AngularFireDatabase, private alertController: AlertController) 
+  public database: AngularFireDatabase, private alertController: AlertController, public authData: AuthData) 
   {
     
     this.plt = platform;
+      this.opcionesDeScan = {
+        prompt:'Escanea un codigo para pagar'
+      }
+
+
+    // Mover esto a una función y llamarla una vez se haga login
     this.transacciones = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay', { 
         query:{
           limitToLast: 5, 
@@ -46,10 +53,7 @@ export class HomePage {
       });
 
 
-      this.opcionesDeScan = {
-        prompt:'Escanea un codigo para pagar'
-      }
-
+    
     
     this.user = this.database.list('/User', { 
         query:{
@@ -121,4 +125,8 @@ export class HomePage {
     this.navCtrl.push(PagarFase2);
   }
 
+  private logout(){
+    this.authData.logoutUser()
+    .then( authData => {this.navCtrl.setRoot(Login);});
+    }
 }

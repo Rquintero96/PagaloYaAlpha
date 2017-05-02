@@ -92,7 +92,7 @@ export class PagarFase2 {
               Saldo: montoguardar,
             });
 
-             let montoguardar2: number = this.montoactual2+this.monto;
+             let montoguardar2: number = parseFloat(this.montoactual2)+parseFloat(this.monto);
              
               this.saldo2.update({
               Saldo: montoguardar2,

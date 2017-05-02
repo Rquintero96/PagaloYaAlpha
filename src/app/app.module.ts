@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler  } from 'ionic-angular';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
 import { QRCodeModule } from 'angular2-qrcode';
-
+// Paginas
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Bancos } from '../pages/bancos/bancos';
@@ -14,14 +14,16 @@ import { PagarFase1 } from '../pages/pagar-fase1/pagar-fase1';
 import { PagarFase2 } from '../pages/pagar-fase2/pagar-fase2';
 import { Perfil } from '../pages/perfil/perfil';
 import { Qrcode } from '../pages/qrcode/qrcode';
-
+import { Login } from '../pages/login/login';
+import { Signup } from '../pages/signup/signup';
+// Dependencias nativas
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
-
+//Provedores
+import { AuthData } from '../providers/auth-data';
 // Plugin nativo de codigos de barra
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
-
+// Constantantes y variables
 export const firebaseConfig = {
     apiKey: "AIzaSyDFB1YfNGQZ77J7ZR4nnnfDhKk8kSyi8g8",
     authDomain: "pagaloya0.firebaseapp.com",
@@ -30,7 +32,10 @@ export const firebaseConfig = {
     storageBucket: "pagaloya0.appspot.com",
     messagingSenderId: "808320915241"
   };
-
+export const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +48,9 @@ export const firebaseConfig = {
     PagarFase1,
     PagarFase2,
     Perfil,
-    Qrcode
+    Qrcode,
+    Login,
+    Signup
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -56,7 +63,7 @@ export const firebaseConfig = {
     }),
     QRCodeModule,
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -69,12 +76,15 @@ export const firebaseConfig = {
     PagarFase1,
     PagarFase2,
     Perfil,
-    Qrcode
+    Qrcode,
+    Login,
+    Signup
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthData,
     BarcodeScanner
   ]
 })

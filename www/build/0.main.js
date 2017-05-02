@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 362:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pagar_fase1__ = __webpack_require__(120);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagarFase1Module", function() { return PagarFase1Module; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(122);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupModule", function() { return SignupModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PagarFase1Module = (function () {
-    function PagarFase1Module() {
+var SignupModule = (function () {
+    function SignupModule() {
     }
-    return PagarFase1Module;
+    return SignupModule;
 }());
-PagarFase1Module = __decorate([
+SignupModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__pagar_fase1__["a" /* PagarFase1 */],
+            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pagar_fase1__["a" /* PagarFase1 */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__pagar_fase1__["a" /* PagarFase1 */]
+            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */]
         ]
     })
-], PagarFase1Module);
+], SignupModule);
 
-//# sourceMappingURL=pagar-fase1.module.js.map
+//# sourceMappingURL=signup.module.js.map
 
 /***/ })
 
