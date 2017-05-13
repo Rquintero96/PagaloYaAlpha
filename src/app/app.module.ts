@@ -85,7 +85,8 @@ export const myFirebaseAuthConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthData,
-    BarcodeScanner
+    BarcodeScanner,
+    AuthData
   ]
 })
 export class AppModule {}
