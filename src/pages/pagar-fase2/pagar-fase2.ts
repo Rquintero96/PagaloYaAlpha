@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { FirebaseObjectObservable, AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseObjectObservable, AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
 import { Tabs } from '../tabs/tabs';
 
 
@@ -33,18 +33,28 @@ export class PagarFase2 {
 
   montoactual: any;
   montoactual2: any;
+  authObserver: any;
+  UsuarioActual_id: String;
 
 
   constructor(public navCtrl: NavController,
     public alertController: AlertController,
     public navParams: NavParams,
-    public database: AngularFireDatabase) {
+    public database: AngularFireDatabase,
+    public af: AngularFire) {
+    
+    this.authObserver = af.auth.subscribe( user => {
+        if (user) 
+        {
+          this.UsuarioActual_id = user.uid;
+        } 
+    });
 
     this.usuarioApagar = navParams.get('usuarioApagar');
-    this.User = this.database.object('/User/-KhUY7ugwy_VJqJXIDay'); // Cambiar en login
-    this.transO = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay');
+    this.User = this.database.object('/User/'+this.UsuarioActual_id); // Cambiar en login
+    this.transO = this.database.list('/Transacciones/'+this.UsuarioActual_id);
     this.transD = this.database.list('/Transacciones/' + this.usuarioApagar.id);
-    this.saldo = this.database.object('/Saldo/-KhUY7ugwy_VJqJXIDay/Cuenta1'); // Cambiar en login
+    this.saldo = this.database.object('/Saldo/'+this.UsuarioActual_id+'/Cuenta1'); // Cambiar en login
     this.saldo2 = this.database.object('/Saldo/'+ this.usuarioApagar.id+'/Cuenta1'); 
 
     this.saldo.subscribe(snapshot => {

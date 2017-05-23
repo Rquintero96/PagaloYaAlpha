@@ -46,15 +46,6 @@ export class HomePage {
         prompt:'Escanea un codigo para pagar'
       }
 
-
-    // Mover esto a una función y llamarla una vez se haga login
-    this.transacciones = this.database.list('/Transacciones/'+this.UsuarioActual_id, { 
-        query:{
-          limitToLast: 5, 
-        }
-      });
-
-
   this.authObserver = af.auth.subscribe( user => {
       if (user) 
       {
@@ -62,6 +53,12 @@ export class HomePage {
       } 
     });
 
+    // Mover esto a una función y llamarla una vez se haga login
+    this.transacciones = this.database.list('/Transacciones/'+this.UsuarioActual_id, { 
+        query:{
+          limitToLast: 5, 
+        }
+      });
     
     
     this.user = this.database.list('/User', { 

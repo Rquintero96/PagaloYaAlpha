@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2';
 import { PagarFase2 } from '../pagar-fase2/pagar-fase2';
 
 @Component({
@@ -11,12 +11,22 @@ export class Contactos {
 
   user: FirebaseListObservable<any>;
   usuarioApagar: FirebaseObjectObservable<any>;
+  authObserver: any;
+  UsuarioActual_id: String;
+
 
   constructor(public navCtrl: NavController, 
                 public alertController: AlertController, 
-                  public database: AngularFireDatabase) {
+                  public database: AngularFireDatabase, private  af: AngularFire) {
       
-      this.user = this.database.list('/Contactos/-KhUY7ugwy_VJqJXIDay');
+  this.authObserver = af.auth.subscribe( user => {
+      if (user) 
+      {
+        this.UsuarioActual_id = user.uid;
+      } 
+    });
+
+      this.user = this.database.list('/Contactos/'+this.UsuarioActual_id);
   }
 
   createUser() {
