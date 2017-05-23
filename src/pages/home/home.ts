@@ -48,7 +48,7 @@ export class HomePage {
 
 
     // Mover esto a una función y llamarla una vez se haga login
-    this.transacciones = this.database.list('/Transacciones/-KhUY7ugwy_VJqJXIDay', { 
+    this.transacciones = this.database.list('/Transacciones/'+this.UsuarioActual_id, { 
         query:{
           limitToLast: 5, 
         }
