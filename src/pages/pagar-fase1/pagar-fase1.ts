@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,  AlertController } from 'ionic-angular';
 import { PagarFase2 } from "../pagar-fase2/pagar-fase2";
-import { FirebaseObjectObservable, AngularFireDatabase, FirebaseListObservable } from "angularfire2";
+import { FirebaseObjectObservable, AngularFireDatabase, FirebaseListObservable, AngularFire } from "angularfire2";
 
 
 /**
@@ -21,11 +21,19 @@ export class PagarFase1 {
   private usuarioApagar: any;
   private Contactos: FirebaseObjectObservable<any>;
   private avatar: string;
-
+  private authObserver: any;
+  UsuarioActual_id: string;
   // Constructor
-  constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase,  private alertController: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase,  private alertController: AlertController, private  af: AngularFire) {
     this.usuarioApagar = navParams.get('usuarioApagar'); //Inicializa el usuario escaneado con la data pasada del home.ts
     this.avatar = this.usuarioApagar.Nombre.charAt(0) + "" + this.usuarioApagar.Apellido.charAt(0);
+    
+    this.authObserver = af.auth.subscribe( user => {
+      if (user) 
+      {
+        this.UsuarioActual_id = user.uid;
+      } 
+    });
   }
 
   // Metodos
@@ -46,7 +54,7 @@ export class PagarFase1 {
                   Apellido: this.usuarioApagar.Apellido,
                   Correo: this.usuarioApagar.Correo
                 }
-    this.Contactos = this.database.object(`/Contactos/-KhUY7ugwy_VJqJXIDay/${this.usuarioApagar.id}`); // Cambiar en Login
+    this.Contactos = this.database.object(`/Contactos/${this.UsuarioActual_id}/${this.usuarioApagar.id}`); // Cambiar en Login
     this.Contactos.set(ContactoAguardar).catch((err: any) => {
                 let error = this.alertController.create({
                   title: "Error",

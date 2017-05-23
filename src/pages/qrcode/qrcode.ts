@@ -17,13 +17,17 @@ import { FirebaseObjectObservable, AngularFireDatabase, AngularFire } from "angu
 export class Qrcode {
 private usuarioActual:FirebaseObjectObservable<any>;
 usuarioActual_id: string;
+authObserver: any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private  af: AngularFire) {
-     this.usuarioActual = this.af.database.object('/User/-KhUY7ugwy_VJqJXIDay');
-                  this.usuarioActual.subscribe(snapshot => {
-                    this.usuarioActual_id = snapshot.$key;
-                  
-                } );
+    this.authObserver = af.auth.subscribe( user => {
+      if (user) 
+      {
+        this.usuarioActual_id = user.uid;
+      } 
+    });
+     this.usuarioActual = this.af.database.object('/User/'+this.usuarioActual_id);
+
   }
 
   ionViewDidLoad() {
