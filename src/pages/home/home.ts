@@ -28,7 +28,9 @@ export class HomePage {
 
   opcionesDeScan: BarcodeScannerOptions;
 
+  authObserver: any;
 
+  UsuarioActual_id: string;
   user: FirebaseListObservable<any>;
 
   
@@ -53,12 +55,19 @@ export class HomePage {
       });
 
 
+  this.authObserver = af.auth.subscribe( user => {
+      if (user) 
+      {
+        this.UsuarioActual_id = user.uid;
+      } 
+    });
+
     
     
     this.user = this.database.list('/User', { 
         query:{
           orderByKey: true,
-          equalTo: '-KhUY7ugwy_VJqJXIDay'
+          equalTo: this.UsuarioActual_id
         }
       });
     
