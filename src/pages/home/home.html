@@ -4,6 +4,9 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Pagalo Ya</ion-title>
+         <ion-buttons end>
+            <button ion-button (click)="logout()"><ion-icon style="padding-right: 5px " name="arrow-round-forward"></ion-icon>Cerrar sesión</button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -56,9 +59,6 @@
                 </button>
             </ion-fab>
 
-            <button round  (click)="logout()">
-                <ion-icon name="car"></ion-icon>
-            </button>
 
 
         </div>

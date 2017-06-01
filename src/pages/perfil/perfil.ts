@@ -20,7 +20,12 @@ export class Perfil {
   constructor(public navCtrl: NavController, public alertController: AlertController, 
   public navParams: NavParams, public database: AngularFireDatabase, private  af: AngularFire) 
   {
-      
+       this.authObserver = af.auth.subscribe( user => {
+      if (user) 
+      {
+        this.usuarioActual_id = user.uid;
+      } 
+    });
        // Lo de rey 
        this.user = this.database.list('/User', { 
         query:{
